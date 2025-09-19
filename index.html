@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>MindfulCare | Mental Health & Wellbeing</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #e0f7fa, #fce4ec);
+      font-family: 'Lato', 'Open Sans', sans-serif;
+    }
+    .hero-section {
+      background: url('https://images.unsplash.com/photo-mental-health-hero.png') center/cover no-repeat;
+      position: relative;
+      color: #2e3a59;
+      display: flex;
+      align-items: center;
+      min-height: 65vh;
+      padding: 3rem 0;
+      overflow: hidden;
+    }
+    .hero-text {
+      background: rgba(255,255,255,0.85);
+      padding: 2rem;
+      max-width: 550px;
+      border-radius: 2rem;
+      box-shadow: 0 6px 24px #46062e10;
+      animation: fadeInDown 1.2s;
+    }
+    @keyframes fadeInDown {
+      0% {opacity:0; transform:translateY(-32px);}
+      100% {opacity:1; transform:translateY(0);}
+    }
+    .cta-btn:hover {
+      background: #c62828;
+      color: #fff;
+      box-shadow: 0 2px 12px #e91e6322;
+      transform: scale(1.05);
+      transition: all 0.15s;
+    }
+    .service-card {
+      transition: box-shadow 0.2s;
+      border-radius: 1.25rem;
+    }
+    .service-card:hover {
+      box-shadow: 0 8px 32px #1976d21a;
+      transform: translateY(-8px);
+    }
+    .testimonial-carousel .carousel-inner {
+      border-radius: 1rem;
+      box-shadow: 0 2px 18px #28528822;
+    }
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: #311b92;
+    }
+    .icon-round {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #ffd9e2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">MindfulCare</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto gap-3">
+        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Team</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Resources</a></li>
+        <li class="nav-item"><a class="nav-link btn cta-btn text-white" style="background:#1976d2;" href="#">Book a Session</a></li>
+        <li class="nav-item"><a class="nav-link btn cta-btn text-white" style="background:#1976d2;" href="loginform.html" target="_blank">LOGIN</a></li>
+        <li class="nav-item"><a class="nav-link btn cta-btn text-white" style="background:#1976d2;" href="signupform.html" target="_blank">SIGN UP</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section class="hero-section">
+  <div class="container">
+    <div class="hero-text">
+      <h1 class="display-5 mb-3">Take The First Step for Your Mind</h1>
+      <p class="lead mb-4">We recommend to fill a form, regarding your current mental health as it would make us easier to analyse about health.</p>
+      <a href="form.html" class="btn cta-btn px-4 py-2 fw-bold" style="background:#c62828;">Get Started</a>
+    </div>
+  </div>
+</section>
+
+<!-- Services Section -->
+<section class="py-5">
+  <div class="container">
+    <h2 class="section-title text-center">Our Services</h2>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="service-card p-4 text-center shadow-sm h-100 bg-white">
+          <div class="icon-round">
+            <i class="fa-solid fa-user-nurse text-danger"></i>
+          </div>
+          <h5>24/7 AI </h5>
+          <p>Our intelligent AI assistant is here to help you 24/7, anytime you need.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="service-card p-4 text-center shadow-sm h-100 bg-white">
+          <div class="icon-round">
+            <i class="fa-solid fa-people-group text-primary"></i>
+          </div>
+          <h5>SOLUTIONS AND HABITS</h5>
+          <p>Here you can know about the solutions, cures, habits to improve mental health.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="service-card p-4 text-center shadow-sm h-100 bg-white">
+          <div class="icon-round">
+            <i class="fa-solid fa-brain text-success"></i>
+          </div>
+          <h5>KNOWLEDGE</h5>
+          <p>Here you can read a lot about the mental and psychological health care.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- 
+Testimonials Section
+<section class="py-5 bg-light">
+  <div class="container">
+    <h2 class="section-title text-center">What People Say</h2>
+    <div id="testimonialCarousel" class="carousel slide testimonial-carousel mx-auto" data-bs-ride="carousel" style="max-width:600px;">
+      <div class="carousel-inner">
+        <div class="carousel-item active p-4">
+          <blockquote class="mb-0">
+            "Working with my therapist at MindfulCare has been life-changing. I've developed tools to manage my anxiety."
+            <footer class="mt-2 text-muted">– Client for 8 months</footer>
+          </blockquote>
+        </div>
+        <div class="carousel-item p-4">
+          <blockquote class="mb-0">
+            "The family counseling helped us rebuild relationships. We communicate better and understand each other."
+            <footer class="mt-2 text-muted">– Client for 1 year</footer>
+          </blockquote>
+        </div>
+        <div class="carousel-item p-4">
+          <blockquote class="mb-0">
+            "Online therapy fits my busy schedule. I get quality care from home."
+            <footer class="mt-2 text-muted">– Client for 6 months</footer>
+          </blockquote>
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon"></span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#testimonialCarousel" data-bs-slide="next">
+        <span class="carousel-control-next-icon"></span>
+      </button>
+    </div>
+  </div>
+</section> -->
+
+
+
+<!-- Team Section -->
+<!-- <section class="py-5">
+  <div class="container">
+    <h2 class="section-title text-center">Meet Our Team</h2>
+    <div class="row g-4 justify-content-center">
+      <div class="col-md-3 col-sm-6">
+        <div class="bg-white shadow-sm p-4 text-center rounded h-100">
+          <img src="https://images.unsplash.com/photo-counselor-profile.jpg" class="rounded-circle mb-3" alt="Therapist" width="80" height="80">
+          <h6 class="fw-bold mb-0">Dr. Aanya Sharma</h6>
+          <span class="text-muted small d-block mb-2">Licensed Clinical Psychologist</span>
+        </div>
+      </div> -->
+      <!-- Repeat for other team members -->
+    <!-- </div>
+  </div>
+</section> -->
+
+<hr style="border: solid black; height: 2px;"> 
+<!-- Contact/CTA Section -->
+<section class="py-5 bg-gradient">
+  <div class="container text-center">
+    <h2 class="mb-3 section-title">Contact Us / Book Appointment</h2>
+    <p class="mb-4">Ready to begin your mental wellness journey? Our team is ready to support you—just take the first step.</p>
+    <a href="#" class="btn cta-btn px-5 py-3 fw-bold" style="background:#1976d2; font-size:1.2rem;">Book Consultation</a>
+  </div>
+</section>
+
+
+
+
+
+
+
+<!-- Enhanced Reviews Section -->
+<section class="py-5 bg-light">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="section-title fw-bold mb-3">Patient Reviews & Testimonials</h2>
+      <p class="lead text-muted">See what our clients say about their mental health journey with us</p>
+      
+      <!-- Overall Rating Display -->
+      <div class="overall-rating mb-4">
+        <div class="rating-summary p-4 bg-white rounded-3 shadow-sm d-inline-block">
+          <div class="rating-stars mb-2">
+            <span class="star-rating text-warning fs-1">★★★★★</span>
+          </div>
+          <div class="rating-text">
+            <span class="rating-score fw-bold fs-3 text-primary">4.8</span>
+            <span class="text-muted">out of 5 stars</span>
+          </div>
+          <p class="text-muted mb-0 small">Based on 247+ verified reviews</p>
+        </div>
+
+
+      <!-- <div class="overall-rating mb-4">
+        <div class="rating-summary p-4 bg-white rounded-3 shadow-sm d-inline-block">
+          <div class="rating-stars mb-2">
+            <span class="star-rating text-warning fs-1">★★★★★</span>
+          </div>
+          <div class="rating-text">
+            <span class="rating-score fw-bold fs-3 text-primary">4.8</span>
+            <span class="text-muted">out of 5 stars</span>
+          </div>
+          <p class="text-muted mb-0 small">Based on 247+ verified reviews</p>
+        </div> -->
+
+        
+      </div>
+
+
+              <!-- <div class="rating-summary p-4 bg-white rounded-3 shadow-sm d-inline-block">
+          <div class="rating-stars mb-2">
+            <span class="star-rating text-warning fs-1">★★★★★</span>
+          </div>
+          <div class="rating-text">
+            <span class="rating-score fw-bold fs-3 text-primary">4.8</span>
+            <span class="text-muted">out of 5 stars</span>
+          </div>
+          <p class="text-muted mb-0 small">Based on 247+ verified reviews</p>
+        </div>
+      </div> -->
+
+
+      
+    </div>
+
+            <!-- <div class="overall-rating mb-4">
+        <div class="rating-summary p-4 bg-white rounded-3 shadow-sm d-inline-block">
+          <div class="rating-stars mb-2">
+            <span class="star-rating text-warning fs-1">★★★★★</span>
+          </div>
+          <div class="rating-text">
+            <span class="rating-score fw-bold fs-3 text-primary">4.8</span>
+            <span class="text-muted">out of 5 stars</span>
+          </div>
+          <p class="text-muted mb-0 small">Based on 247+ verified reviews</p>
+        </div>
+      </div>
+    </div> -->
+
+
+
+    <!-- Featured Best Review -->
+    <div class="featured-review mb-5">
+      <div class="card border-0 shadow-lg">
+        <div class="card-body p-5">
+          <div class="row align-items-center">
+            <div class="col-md-8">
+              <div class="mb-3">
+                <span class="badge bg-success fs-6 px-3 py-2">⭐ Best Review</span>
+              </div>
+              <blockquote class="blockquote mb-4">
+                <p class="fs-5 text-dark">"This mental health center completely transformed my life. The therapists are incredibly compassionate and skilled. After struggling with anxiety for years, I finally found the support I needed. The online sessions were convenient, and the treatment approach was personalized to my specific needs. I can't recommend MindfulCare enough!"</p>
+              </blockquote>
+              <footer class="blockquote-footer">
+                <strong>Sarah M.</strong> <cite title="Verified Patient">Verified Patient - 8 months of therapy</cite>
+              </footer>
+              <div class="rating-stars text-warning fs-4 mt-2">
+                ★★★★★
+              </div>
+            </div>
+            <div class="col-md-4 text-center">
+              <img src="OIP.webp" class="rounded-circle mb-3" alt="Patient" width="100" height="100">
+              <div class="text-muted small">
+                <i class="fas fa-calendar-alt me-1"></i>
+                Reviewed 2 weeks ago
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Review Statistics -->
+    <div class="review-stats mb-5">
+      <div class="row g-4">
+        <div class="col-md-3">
+          <div class="stat-card text-center p-4 bg-white rounded-3 shadow-sm h-100">
+            <div class="stat-icon mb-3">
+              <i class="fas fa-star text-warning fs-1"></i>
+            </div>
+            <h4 class="fw-bold text-primary">4.8/5</h4>
+            <p class="text-muted mb-0">Average Rating</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-card text-center p-4 bg-white rounded-3 shadow-sm h-100">
+            <div class="stat-icon mb-3">
+              <i class="fas fa-users text-success fs-1"></i>
+            </div>
+            <h4 class="fw-bold text-primary">247+</h4>
+            <p class="text-muted mb-0">Happy Clients</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-card text-center p-4 bg-white rounded-3 shadow-sm h-100">
+            <div class="stat-icon mb-3">
+              <i class="fas fa-thumbs-up text-info fs-1"></i>
+            </div>
+            <h4 class="fw-bold text-primary">96%</h4>
+            <p class="text-muted mb-0">Recommend Us</p>
+          </div>
+        </div>
+        <div class="col-md-3">
+          <div class="stat-card text-center p-4 bg-white rounded-3 shadow-sm h-100">
+            <div class="stat-icon mb-3">
+              <i class="fas fa-medal text-warning fs-1"></i>
+            </div>
+            <h4 class="fw-bold text-primary">85%</h4>
+            <p class="text-muted mb-0">5-Star Reviews</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Reviews Carousel -->
+    <div class="reviews-carousel">
+      <h3 class="text-center mb-4">More Patient Stories</h3>
+      <div id="reviewsCarousel" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <!-- Review 1 -->
+          <div class="carousel-item active">
+            <div class="row g-4">
+              <div class="col-md-6">
+                <div class="review-card p-4 bg-white rounded-3 shadow-sm h-100">
+                  <div class="rating-stars text-warning mb-3">★★★★★</div>
+                  <p class="review-text">"The family counseling sessions helped us communicate better. Our therapist was patient and understanding throughout the process."</p>
+                  <div class="reviewer-info d-flex align-items-center mt-3">
+                    <img src="https://images.unsplash.com/photo-family.jpg" class="rounded-circle me-3" alt="Reviewer" width="50" height="50">
+                    <div>
+                      <strong>Michael & Lisa T.</strong>
+                      <div class="text-muted small">Family Therapy - 6 months</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="review-card p-4 bg-white rounded-3 shadow-sm h-100">
+                  <div class="rating-stars text-warning mb-3">★★★★★</div>
+                  <p class="review-text">"Online therapy was perfect for my busy schedule. The platform was easy to use and my therapist was always professional and caring."</p>
+                  <div class="reviewer-info d-flex align-items-center mt-3">
+                    <img src="https://images.unsplash.com/photo-professional.jpg" class="rounded-circle me-3" alt="Reviewer" width="50" height="50">
+                    <div>
+                      <strong>David K.</strong>
+                      <div class="text-muted small">Online Therapy - 4 months</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Review 2 -->
+          <div class="carousel-item">
+            <div class="row g-4">
+              <div class="col-md-6">
+                <div class="review-card p-4 bg-white rounded-3 shadow-sm h-100">
+                  <div class="rating-stars text-warning mb-3">★★★★☆</div>
+                  <p class="review-text">"Group therapy sessions were incredibly supportive. Meeting others with similar challenges helped me feel less alone in my journey."</p>
+                  <div class="reviewer-info d-flex align-items-center mt-3">
+                    <img src="https://images.unsplash.com/photo-group.jpg" class="rounded-circle me-3" alt="Reviewer" width="50" height="50">
+                    <div>
+                      <strong>Emma R.</strong>
+                      <div class="text-muted small">Group Therapy - 3 months</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="review-card p-4 bg-white rounded-3 shadow-sm h-100">
+                  <div class="rating-stars text-warning mb-3">★★★★★</div>
+                  <p class="review-text">"The stress management techniques I learned have been life-changing. I now have practical tools to handle daily challenges effectively."</p>
+                  <div class="reviewer-info d-flex align-items-center mt-3">
+                    <img src="https://images.unsplash.com/photo-stress.jpg" class="rounded-circle me-3" alt="Reviewer" width="50" height="50">
+                    <div>
+                      <strong>Jennifer L.</strong>
+                      <div class="text-muted small">Stress Management - 5 months</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Carousel Controls -->
+        <button class="carousel-control-prev" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bg-primary rounded-circle p-3"></span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#reviewsCarousel" data-bs-slide="next">
+          <span class="carousel-control-next-icon bg-primary rounded-circle p-3"></span>
+        </button>
+        
+        <!-- Carousel Indicators -->
+        <div class="carousel-indicators">
+          <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="0" class="active"></button>
+          <button type="button" data-bs-target="#reviewsCarousel" data-bs-slide-to="1"></button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Rating Breakdown -->
+    <div class="rating-breakdown mt-5">
+      <h3 class="text-center mb-4">Rating Breakdown</h3>
+      <div class="row">
+        <div class="col-md-8 mx-auto">
+          <div class="rating-progress bg-white p-4 rounded-3 shadow-sm">
+            <div class="row mb-3">
+              <div class="col-2 text-end">5 ★</div>
+              <div class="col-8">
+                <div class="progress">
+                  <div class="progress-bar bg-success" style="width: 85%"></div>
+                </div>
+              </div>
+              <div class="col-2">83%</div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-2 text-end">4 ★</div>
+              <div class="col-8">
+                <div class="progress">
+                  <div class="progress-bar bg-info" style="width: 12%"></div>
+                </div>
+              </div>
+              <div class="col-2">12%</div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-2 text-end">3 ★</div>
+              <div class="col-8">
+                <div class="progress">
+                  <div class="progress-bar bg-warning" style="width: 2%"></div>
+                </div>
+              </div>
+              <div class="col-2">2%</div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-2 text-end">2 ★</div>
+              <div class="col-8">
+                <div class="progress">
+                  <div class="progress-bar bg-orange" style="width: 1%"></div>
+                </div>
+              </div>
+              <div class="col-2">1%</div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-2 text-end">1 ★</div>
+              <div class="col-8">
+                <div class="progress">
+                  <div class="progress-bar bg-danger" style="width: 0%"></div>
+                </div>
+              </div>
+              <div class="col-2">2%</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="text-center mt-5">
+      <p class="lead mb-4">Ready to start your mental health journey?</p>
+      <a href="#" class="btn btn-primary btn-lg px-5 py-3 me-3">Book Your Session</a>
+      <a href="#" class="btn btn-outline-primary btn-lg px-5 py-3">Read More Reviews</a>
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+
+
+<!-- Footer -->
+<footer class="py-4 bg-dark text-light mt-5">
+  <div class="container text-center">
+    <small>&copy; 2025 MindfulCare | All rights reserved.</small>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
