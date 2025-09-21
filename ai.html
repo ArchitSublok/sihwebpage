@@ -54,76 +54,88 @@
         }
     </style>
 </head>
-<body class="bg-gray-100 flex flex-col md:flex-row h-screen antialiased text-gray-800">
+<body class="bg-gray-100 h-screen antialiased text-gray-800 overflow-hidden">
 
-    <!-- Control Panel -->
-    <div class="md:w-1/3 lg:w-1/4 bg-white p-6 shadow-lg overflow-y-auto">
-        <h1 class="text-2xl font-bold text-gray-900 mb-2">Custom Chatbot</h1>
-        <p class="text-sm text-gray-600 mb-6">Create buttons for frequently asked questions. The chatbot will search the internet for the most current answers.</p>
+    <div class="relative flex h-full">
+        <div id="control-panel" class="absolute top-0 left-0 h-full w-4/5 max-w-sm bg-white p-6 shadow-lg overflow-y-auto transform -translate-x-full transition-transform duration-300 ease-in-out z-30 md:relative md:w-1/3 md:translate-x-0 md:shadow-lg lg:w-1/4">
+            <div class="flex justify-between items-center mb-6 md:hidden">
+                <h1 class="text-2xl font-bold text-gray-900">Settings</h1>
+                <button id="close-menu-button" class="p-2 -mr-2">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </div>
+            <h1 class="hidden md:block text-2xl font-bold text-gray-900 mb-2">Custom Chatbot</h1>
+            <p class="text-sm text-gray-600 mb-6">Create buttons for frequently asked questions. The chatbot will search the internet for the most current answers.</p>
 
-        <div class="mb-6">
-            <label for="question-input" class="block text-md font-medium text-gray-700 mb-2">Question Buttons</label>
-            <p class="text-xs text-gray-500 mb-2">Enter one question per line. These will become clickable buttons in the chat panel.</p>
-            <textarea id="question-input" rows="8" class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="e.g., What are the latest AI trends?&#10;Summarize the top news headlines today.&#10;What is the weather in London?"></textarea>
+            <div class="mb-6">
+                <label for="question-input" class="block text-md font-medium text-gray-700 mb-2">Question Buttons</label>
+                <p class="text-xs text-gray-500 mb-2">Enter one question per line. These will become clickable buttons in the chat panel.</p>
+                <textarea id="question-input" rows="8" class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="e.g., What are the latest AI trends?&#10;Summarize the top news headlines today.&#10;What is the weather in London?"></textarea>
+            </div>
+            <button id="save-questions" class="w-full bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition">
+                Save & Generate Buttons
+            </button>
         </div>
-        <button id="save-questions" class="w-full bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition">
-            Save & Generate Buttons
-        </button>
-    </div>
 
-    <!-- Chat Panel -->
-    <div class="flex-1 p-4 sm:p-6 flex flex-col h-screen">
-        <!-- Chat Header -->
-        <div class="flex sm:items-center justify-between py-3 border-b-2 border-gray-200">
-            <div class="relative flex items-center space-x-4">
-                <div class="relative">
-                    <span class="absolute text-green-500 right-0 bottom-0">
-                        <svg width="20" height="20">
-                            <circle cx="8" cy="8" r="8" fill="currentColor"></circle>
-                        </svg>
-                    </span>
-                    <div class="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-blue-500 flex items-center justify-center text-white text-xl font-bold">B</div>
-                </div>
-                <div class="flex flex-col leading-tight">
-                    <div class="text-lg sm:text-xl font-medium">
-                        <span class="text-gray-700">Knowledge Bot</span>
+        <div id="menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-20 hidden md:hidden"></div>
+        <div class="flex-1 flex flex-col h-full">
+            <div class="flex sm:items-center justify-between py-3 border-b-2 border-gray-200 px-4">
+                <div class="relative flex items-center space-x-4">
+                    <div class="relative">
+                        <span class="absolute text-green-500 right-0 bottom-0">
+                            <svg width="20" height="20">
+                                <circle cx="8" cy="8" r="8" fill="currentColor"></circle>
+                            </svg>
+                        </span>
+                        <div class="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-blue-500 flex items-center justify-center text-white text-xl font-bold">B</div>
                     </div>
-                    <span class="text-sm text-gray-600">Online</span>
+                    <div class="flex flex-col leading-tight">
+                        <div class="text-lg sm:text-xl font-medium">
+                            <span class="text-gray-700">Knowledge Bot</span>
+                        </div>
+                        <span class="text-sm text-gray-600">Online</span>
+                    </div>
                 </div>
-            </div>
-        </div>
-
-        <!-- Messages -->
-        <div id="messages" class="flex-1 p-3 space-y-4 overflow-y-auto">
-            <!-- Initial Bot Message -->
-            <div class="chat-bubble-bot">
-                <span>Hello! How can I help you today? You can ask me anything or use one of the custom question buttons.</span>
-            </div>
-             <!-- Quick Action Buttons -->
-            <div id="quick-actions" class="py-2 flex flex-wrap gap-2">
-                <!-- Buttons will be generated here -->
-            </div>
-        </div>
-
-        <!-- Sources Display -->
-        <div id="sources-container" class="py-2 px-4 border-t border-gray-200 text-xs text-gray-500">
-            <!-- Sources will be displayed here -->
-        </div>
-
-        <!-- Message Input -->
-        <div class="border-t-2 border-gray-200 px-4 pt-4 mb-2 sm:mb-0">
-            <div class="relative flex">
-                <input id="chat-input" type="text" placeholder="Write your message!" class="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-4 bg-gray-200 rounded-full py-3">
-                <div class="absolute right-0 items-center inset-y-0 hidden sm:flex">
-                    <button id="send-button" type="button" class="inline-flex items-center justify-center rounded-full h-10 w-10 sm:h-12 sm:w-12 transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-600 focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-6 w-6 transform rotate-90">
-                            <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
+                <div class="flex items-center space-x-2 md:hidden">
+                    <button id="open-menu-button" type="button" class="inline-flex items-center justify-center rounded-lg border h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.096 2.572-1.065z" />
+                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                         </svg>
                     </button>
                 </div>
+                 </div>
+
+            <div id="messages" class="flex-1 p-3 space-y-4 overflow-y-auto pb-20">
+                <div class="chat-bubble-bot">
+                    <span>Hello! How can I help you today? You can ask me anything or use one of the custom question buttons.</span>
+                </div>
+                 <div id="quick-actions" class="py-2 flex flex-wrap gap-2">
+                    </div>
+            </div>
+
+            <div class="mt-auto bg-white">
+                <div id="sources-container" class="py-2 px-4 border-t border-gray-200 text-xs text-gray-500">
+                    </div>
+
+                <div class="border-t-2 border-gray-200 px-4 pt-4 mb-2 sm:mb-0">
+                    <div class="relative flex">
+                        <input id="chat-input" type="text" placeholder="Write your message!" class="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-4 bg-gray-200 rounded-full py-3">
+                        <div class="absolute right-0 items-center inset-y-0 flex">
+                            <button id="send-button" type="button" class="inline-flex items-center justify-center rounded-full h-10 w-10 sm:h-12 sm:w-12 transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-600 focus:outline-none">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-6 w-6 transform rotate-90">
+                                    <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
 
     <script>
         const questionInput = document.getElementById('question-input');
@@ -134,19 +146,22 @@
         const sendButton = document.getElementById('send-button');
         const sourcesContainer = document.getElementById('sources-container');
 
+        // --- START: New elements for mobile drawer ---
+        const controlPanel = document.getElementById('control-panel');
+        const openMenuButton = document.getElementById('open-menu-button');
+        const closeMenuButton = document.getElementById('close-menu-button');
+        const menuOverlay = document.getElementById('menu-overlay');
+        // --- END: New elements ---
+
         const API_KEY = ""; // This will be handled by the execution environment.
 
         // --- Core Functions ---
 
-        /**
-         * Calls the Gemini API with the user's query and uses Google Search grounding.
-         * Implements exponential backoff for retries.
-         */
         async function callGeminiAPI(query, retries = 5, delay = 1000) {
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${API_KEY}`;
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${API_KEY}`;
             const payload = {
                 contents: [{ parts: [{ text: query }] }],
-                tools: [{ "google_search": {} }], // Enable Google Search grounding
+                tools: [{ "googleSearch": {} }], // Correct tool name is googleSearch
             };
 
             for (let i = 0; i < retries; i++) {
@@ -156,27 +171,20 @@
                         headers: { 'Content-Type': 'application/json' },
                         body: JSON.stringify(payload),
                     });
-
-                    if (!response.ok) {
-                        throw new Error(`HTTP error! status: ${response.status}`);
-                    }
-
+                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
                     return await response.json();
                 } catch (error) {
                     console.error(`Attempt ${i + 1} failed:`, error);
                     if (i < retries - 1) {
                         await new Promise(resolve => setTimeout(resolve, delay));
-                        delay *= 2; // Exponential backoff
+                        delay *= 2;
                     } else {
                         return { error: "Failed to get a response from the AI model after several retries." };
                     }
                 }
             }
         }
-
-        /**
-         * Handles the process of sending a query and displaying the response.
-         */
+        
         async function handleQuery(queryText) {
             if (!queryText.trim()) return;
 
@@ -184,8 +192,10 @@
             chatInput.value = '';
             setLoading(true);
 
-            const result = await callGeminiAPI(queryText);
+            // Hide menu on mobile when a query is sent
+            if(window.innerWidth < 768) closeMenu();
 
+            const result = await callGeminiAPI(queryText);
             setLoading(false);
 
             if (result.error) {
@@ -194,20 +204,21 @@
             }
             
             const candidate = result.candidates?.[0];
-            if (candidate && candidate.content?.parts?.[0]?.text) {
+            const toolCall = candidate?.content?.parts?.[0]?.toolCall;
+
+            if (toolCall?.name === 'googleSearch' && toolCall?.args?.results) {
+                 const searchResults = toolCall.args.results;
+                 const botResponse = searchResults.map(res => res.snippet).join('\n\n');
+                 displayMessage(botResponse || "I found some information, but no direct snippets. Please check the sources.", 'bot');
+                 
+                 const sources = searchResults.map(res => ({ uri: res.link, title: res.title })).filter(s => s.uri && s.title);
+                 displaySources(sources);
+
+            } else if (candidate?.content?.parts?.[0]?.text) {
                 const botResponse = candidate.content.parts[0].text;
                 displayMessage(botResponse, 'bot');
-
-                // Handle sources
-                let sources = [];
-                const groundingMetadata = candidate.groundingMetadata;
-                if (groundingMetadata && groundingMetadata.groundingAttributions) {
-                    sources = groundingMetadata.groundingAttributions
-                        .map(attr => ({ uri: attr.web?.uri, title: attr.web?.title }))
-                        .filter(source => source.uri && source.title);
-                }
-                displaySources(sources);
-
+                // Clear sources if it's a direct text response without search
+                displaySources([]);
             } else {
                 displayMessage("I'm sorry, I couldn't process that. The response was empty.", 'bot');
                 console.error("Invalid response structure:", result);
@@ -230,9 +241,7 @@
                 sendButton.disabled = true;
                 chatInput.disabled = true;
             } else {
-                if (existingLoader) {
-                    existingLoader.remove();
-                }
+                if (existingLoader) existingLoader.remove();
                 sendButton.disabled = false;
                 chatInput.disabled = false;
                 chatInput.focus();
@@ -242,18 +251,27 @@
         function displayMessage(text, sender) {
             const bubble = document.createElement('div');
             bubble.className = sender === 'user' ? 'chat-bubble-user' : 'chat-bubble-bot';
-            // Simple markdown for bold and lists
-            let formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            let formattedText = text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+                
+            formattedText = formattedText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
             formattedText = formattedText.replace(/^\* (.*$)/gm, '<ul class="list-disc list-inside"><li>$1</li></ul>');
             bubble.innerHTML = `<span>${formattedText}</span>`;
 
-            messagesContainer.insertBefore(bubble, quickActionsContainer);
+            // Insert before the quick actions container
+            const referenceNode = document.getElementById('quick-actions');
+            messagesContainer.insertBefore(bubble, referenceNode);
+
             scrollToBottom();
         }
         
         function displaySources(sources) {
-            sourcesContainer.innerHTML = ''; // Clear previous sources
-            if (sources.length > 0) {
+            sourcesContainer.innerHTML = '';
+            if (sources && sources.length > 0) {
                 const title = document.createElement('p');
                 title.className = 'font-semibold mb-1';
                 title.textContent = 'Sources:';
@@ -276,7 +294,7 @@
 
         function generateButtons() {
             const questions = questionInput.value.split('\n').filter(q => q.trim() !== '');
-            quickActionsContainer.innerHTML = ''; // Clear existing buttons
+            quickActionsContainer.innerHTML = ''; 
             
             if (questions.length === 0) return;
 
@@ -289,16 +307,35 @@
             });
 
             localStorage.setItem('customQuestions', questionInput.value);
+            
+            // Auto-close menu on mobile after saving
+            if (window.innerWidth < 768) {
+                closeMenu();
+            }
         }
 
         function scrollToBottom() {
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
         }
 
+        // --- START: New functions for mobile drawer ---
+        function openMenu() {
+            controlPanel.classList.remove('-translate-x-full');
+            menuOverlay.classList.remove('hidden');
+            document.body.classList.add('overflow-hidden');
+        }
+
+        function closeMenu() {
+            controlPanel.classList.add('-translate-x-full');
+            menuOverlay.classList.add('hidden');
+            document.body.classList.remove('overflow-hidden');
+        }
+        // --- END: New functions ---
+
+
         // --- Event Listeners and Initialization ---
 
         saveButton.addEventListener('click', generateButtons);
-
         sendButton.addEventListener('click', () => handleQuery(chatInput.value));
         chatInput.addEventListener('keypress', (e) => {
             if (e.key === 'Enter') {
@@ -307,7 +344,12 @@
             }
         });
 
-        // Load saved questions on startup
+        // --- START: New event listeners for mobile drawer ---
+        openMenuButton.addEventListener('click', openMenu);
+        closeMenuButton.addEventListener('click', closeMenu);
+        menuOverlay.addEventListener('click', closeMenu);
+        // --- END: New event listeners ---
+
         document.addEventListener('DOMContentLoaded', () => {
             const savedQuestions = localStorage.getItem('customQuestions');
             if (savedQuestions) {
@@ -319,4 +361,3 @@
     </script>
 </body>
 </html>
-
