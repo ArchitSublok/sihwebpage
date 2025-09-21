@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Resources | HorizonCare Mental Health</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #e0f7fa, #fce4ec);
+      font-family: 'Lato', 'Open Sans', sans-serif;
+    }
+    .page-header {
+      background-color: rgba(255, 255, 255, 0.8);
+    }
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 2.5rem;
+      color: #311b92;
+    }
+    .resource-card {
+      border: none;
+      border-radius: 1.25rem;
+      transition: all 0.3s ease-in-out;
+    }
+    .resource-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 32px rgba(25, 118, 210, 0.12) !important;
+    }
+    .card-icon {
+      font-size: 2.5rem;
+      margin-bottom: 1rem;
+      color: #1976d2;
+    }
+    a {
+      text-decoration: none;
+    }
+    .nav-link.active {
+       font-weight: bold;
+       color: #1976d2 !important;
+    }
+
+    @media (min-width: 768px) {
+      .section-title {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm sticky-top">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="index.html">HorizonCare</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav ms-auto gap-3">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="doctorlist.html" target="_blank">Team</a></li>
+        <li class="nav-item"><a class="nav-link active" href="resources.html">Resources</a></li>
+        <li class="nav-item mt-2 mt-lg-0"><a class="nav-link btn cta-btn text-white" style="background:#1976d2;" href="bookasession.html" target="_blank">Book a Session</a></li>
+        <li class="nav-item mt-2 mt-lg-0"><a class="nav-link btn cta-btn text-white" style="background:#1976d2;" href="loginform.html" target="_blank">LOGIN</a></li>
+        <li class="nav-item mt-2 mt-lg-0"><a class="nav-link btn cta-btn text-white" style="background:#1976d2;" href="signupform.html" target="_blank">SIGN UP</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<header class="page-header py-5 text-center">
+  <div class="container">
+    <h1 class="display-5 fw-bold" style="color: #311b92;">Mental Health Resources</h1>
+    <p class="lead text-muted mt-3">A curated collection of tools, articles, and support networks to help you on your journey.</p>
+  </div>
+</header>
+
+<main class="container my-5">
+
+  <section id="articles" class="mb-5">
+    <h2 class="section-title text-center">Articles & Guides</h2>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <div class="card resource-card h-100 shadow-sm">
+          <div class="card-body d-flex flex-column text-center p-4">
+            <i class="fas fa-book-open card-icon"></i>
+            <h5 class="card-title fw-bold">NIMH Publications</h5>
+            <p class="card-text text-muted">The National Institute of Mental Health provides free brochures and booklets on various mental health topics.</p>
+            <a href="https://www.nimh.nih.gov/health/publications" target="_blank" class="btn btn-primary mt-auto">Learn More</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="card resource-card h-100 shadow-sm">
+          <div class="card-body d-flex flex-column text-center p-4">
+            <i class="fas fa-newspaper card-icon" style="color:#c62828;"></i>
+            <h5 class="card-title fw-bold">Verywell Mind</h5>
+            <p class="card-text text-muted">An extensive library of articles on mental health conditions, wellness strategies, and recent research.</p>
+            <a href="https://www.verywellmind.com/" target="_blank" class="btn btn-danger mt-auto">Visit Website</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="card resource-card h-100 shadow-sm">
+          <div class="card-body d-flex flex-column text-center p-4">
+            <i class="fas fa-lightbulb card-icon" style="color:#28a745;"></i>
+            <h5 class="card-title fw-bold">Mind.org.uk</h5>
+            <p class="card-text text-muted">In-depth guides and information on A-Z mental health topics, treatments, and legal rights.</p>
+            <a href="https://www.mind.org.uk/information-support/" target="_blank" class="btn btn-success mt-auto">Explore Guides</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <hr class="my-5">
+
+  <section id="helplines" class="mb-5">
+    <h2 class="section-title text-center">Helplines & Crisis Support</h2>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <div class="card resource-card h-100 shadow-sm">
+          <div class="card-body d-flex flex-column text-center p-4">
+            <i class="fas fa-phone-volume card-icon text-danger"></i>
+            <h5 class="card-title fw-bold">988 Suicide & Crisis Lifeline</h5>
+            <p class="card-text text-muted">Free and confidential support for people in distress, as well as prevention and crisis resources. Available 24/7.</p>
+            <a href="https://988lifeline.org/" target="_blank" class="btn btn-danger mt-auto">Get Help Now</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="card resource-card h-100 shadow-sm">
+          <div class="card-body d-flex flex-column text-center p-4">
+            <i class="fas fa-comments card-icon text-success"></i>
+            <h5 class="card-title fw-bold">Crisis Text Line</h5>
+            <p class="card-text text-muted">Connect with a trained Crisis Counselor for free, 24/7 support via text message. Text HOME to 741741.</p>
+            <a href="https://www.crisistextline.org/" target="_blank" class="btn btn-success mt-auto">Text for Support</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="card resource-card h-100 shadow-sm">
+          <div class="card-body d-flex flex-column text-center p-4">
+            <i class="fas fa-hand-holding-heart card-icon text-primary"></i>
+            <h5 class="card-title fw-bold">SAMHSA National Helpline</h5>
+            <p class="card-text text-muted">A confidential, free, 24/7 information service for individuals and families facing mental and/or substance use disorders.</p>
+            <a href="https://www.samhsa.gov/find-help/national-helpline" target="_blank" class="btn btn-primary mt-auto">Find Help</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  
+  <hr class="my-5">
+
+  <section id="apps" class="mb-5">
+    <h2 class="section-title text-center">Mental Health Apps</h2>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-4">
+        <div class="card resource-card h-100 shadow-sm">
+          <div class="card-body d-flex flex-column text-center p-4">
+            <i class="fas fa-mobile-alt card-icon" style="color: #6f42c1;"></i>
+            <h5 class="card-title fw-bold">Calm</h5>
+            <p class="card-text text-muted">A leading app for meditation, sleep stories, and relaxation, designed to help lower stress and reduce anxiety.</p>
+            <a href="https://www.calm.com/" target="_blank" class="btn mt-auto" style="background-color: #6f42c1; color: white;">Visit Calm</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="card resource-card h-100 shadow-sm">
+          <div class="card-body d-flex flex-column text-center p-4">
+            <i class="fas fa-brain card-icon" style="color: #fd7e14;"></i>
+            <h5 class="card-title fw-bold">Headspace</h5>
+            <p class="card-text text-muted">Guided meditations, mindfulness exercises, and sleep content to help you build healthy, life-changing habits.</p>
+            <a href="https://www.headspace.com/" target="_blank" class="btn mt-auto" style="background-color: #fd7e14; color: white;">Try Headspace</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-4">
+        <div class="card resource-card h-100 shadow-sm">
+          <div class="card-body d-flex flex-column text-center p-4">
+            <i class="fas fa-user-friends card-icon" style="color: #0d6efd;"></i>
+            <h5 class="card-title fw-bold">BetterHelp</h5>
+            <p class="card-text text-muted">Access licensed, professional therapists online for convenient and affordable mental health care via text, chat, phone, or video.</p>
+            <a href="https://www.betterhelp.com/" target="_blank" class="btn btn-primary mt-auto">Find a Therapist</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="py-4 bg-dark text-light mt-5">
+  <div class="container text-center">
+    <small>&copy; 2025 HorizonCare | All rights reserved.</small>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
