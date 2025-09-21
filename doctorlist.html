@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Meet Our Therapists | HorizonCare</title>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+  <style>
+    body {
+      background: linear-gradient(135deg, #e0f7fa, #fce4ec);
+      font-family: 'Lato', 'Open Sans', sans-serif;
+    }
+    .cta-btn:hover {
+      background: #c62828;
+      color: #fff;
+      box-shadow: 0 2px 12px #e91e6322;
+      transform: scale(1.05);
+      transition: all 0.15s;
+    }
+    .section-title {
+      font-size: 2.2rem;
+      font-weight: 700;
+      margin-bottom: 2rem;
+      color: #311b92;
+    }
+    .doctor-card {
+      background: #ffffff;
+      border-radius: 1.25rem;
+      box-shadow: 0 8px 32px #1976d21a;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .doctor-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 12px 40px #1976d22a;
+    }
+    .doctor-img {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+    }
+    .specialty-badge {
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+<!-- Navigation (Consistent with your homepage) -->
+<nav class="navbar navbar-expand-lg navbar-light bg-white py-3 shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="#">HorizonCare</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <!-- <ul class="navbar-nav ms-auto gap-3">
+        <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Services</a></li>
+        <li class="nav-item"><a class="nav-link fw-bold text-primary" href="team.html">Team</a></li>
+        <li class="nav-item"><a class="nav-link" href="#">Resources</a></li>
+        <li class="nav-item"><a class="nav-link btn cta-btn text-white" style="background:#1976d2;" href="booksession.html" target="_blank">Book a Session</a></li>
+        <li class="nav-item"><a class="nav-link btn cta-btn text-white" style="background:#1976d2;" href="loginform.html" target="_blank">LOGIN</a></li> -->
+      <!-- </ul> -->
+    </div>
+  </div>
+</nav>
+
+<!-- Main Content Section -->
+<section class="py-5">
+  <div class="container">
+    
+    <!-- Page Header -->
+    <div class="text-center mb-5">
+      <h1 class="section-title">Meet Our Compassionate Therapists</h1>
+      <p class="lead text-muted" style="max-width: 650px; margin: 0 auto;">
+        Our team is comprised of licensed and experienced professionals dedicated to your well-being. Read about their approach and find the right expert for your journey.
+      </p>
+    </div>
+
+    <!-- Doctors List (Vertical Layout) -->
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+
+        <!-- Doctor 1 Card -->
+        <div class="doctor-card p-4 mb-4">
+          <div class="row align-items-center">
+            <div class="col-md-3 text-center">
+              
+              <img src="https://placehold.co/150x150/E0F7FA/311B92?text=Dr.+Sharma" class="rounded-circle doctor-img mb-3 mb-md-0" alt="Dr. Anya Sharma">
+            </div>
+            <div class="col-md-9">
+              <h3 class="fw-bold mb-1" style="color: #46062e;">Dr. Anya Sharma</h3>
+              <p class="text-primary fw-bold">Licensed Clinical Psychologist</p>
+              <div class="mb-3">
+                <span class="badge bg-success-subtle text-success-emphasis rounded-pill p-2 specialty-badge"><i class="fa-solid fa-brain me-1"></i>Cognitive Behavioral Therapy (CBT)</span>
+                <span class="badge bg-info-subtle text-info-emphasis rounded-pill p-2 specialty-badge"><i class="fa-solid fa-person-military-pointing me-1"></i>Trauma & PTSD</span>
+              </div>
+              <p class="text-muted">Dr. Sharma specializes in helping adults navigate anxiety, depression, and trauma. Her approach is rooted in evidence-based practices, providing clients with practical tools to foster resilience and create lasting change.</p>
+              <a href="#" class="btn btn-primary fw-bold" style="background:#1976d2; border:none;">Book a Session with Dr. Sharma</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Doctor 2 Card -->
+        <div class="doctor-card p-4 mb-4">
+          <div class="row align-items-center">
+            <div class="col-md-3 text-center">
+              
+              <img src="https://placehold.co/150x150/FCE4EC/311B92?text=Mr.+Chen" class="rounded-circle doctor-img mb-3 mb-md-0" alt="Mr. David Chen">
+            </div>
+            <div class="col-md-9">
+              <h3 class="fw-bold mb-1" style="color: #46062e;">Dr. Sumeet Inder Singh</h3>
+              <p class="text-primary fw-bold"> De-addiction, and Stress Management </p>
+              <div class="mb-3">
+                <span class="badge bg-warning-subtle text-warning-emphasis rounded-pill p-2 specialty-badge"><i class="fa-solid fa-users me-1"></i>Couples & Family Counseling</span>
+                <span class="badge bg-danger-subtle text-danger-emphasis rounded-pill p-2 specialty-badge"><i class="fa-solid fa-comment me-1"></i>Communication Issues</span>
+              </div>
+              <p class="text-muted">Dr. Sumeet Inder Singh is a senior consultant psychiatrist in Chandigarh with over 28 years of experience . He specializes in a wide range of mental health issues, including psychiatric and psychological problems, stress management, and drug de-addiction . His qualifications are recognized internationally, and he is also a certified sexologist .</p>
+              <a href="bookasession.html" target="_blank" class="btn btn-primary fw-bold" style="background:#1976d2; border:none;">Book a Session with Mr. Singh</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Doctor 3 Card -->
+        <div class="doctor-card p-4 mb-4">
+          <div class="row align-items-center">
+            <div class="col-md-3 text-center">
+              
+              <img src="https://placehold.co/150x150/E0F7FA/311B92?text=Dr.+Williams" class="rounded-circle doctor-img mb-3 mb-md-0" alt="Dr. Emily Williams">
+            </div>
+            <div class="col-md-9">
+              <h3 class="fw-bold mb-1" style="color: #46062e;">Dr. R.K. Suri</h3>
+              <p class="text-primary fw-bold">Clinical Psychology, Career Counseling, Psychoanalysis, and Relationship Management </p>
+              <div class="mb-3">
+                <span class="badge bg-info-subtle text-info-emphasis rounded-pill p-2 specialty-badge"><i class="fa-solid fa-spa me-1"></i>Mindfulness & Stress Reduction</span>
+                <span class="badge bg-success-subtle text-success-emphasis rounded-pill p-2 specialty-badge"><i class="fa-solid fa-briefcase me-1"></i>Workplace & Career Stress</span>
+              </div>
+              <p class="text-muted">With over 40 years of experience, Dr. R.K. Suri is a chartered clinical psychologist known for his work in neuro-psychological assessment, career counseling, hypnotherapy, and relationship management . He has extensive experience working with students, having provided career counseling at prestigious institutions like the IITs and IIMs, as well as for university entrance in the US, UK, and Australia . Dr. Suri is associated with the online counseling platform TalktoAngel, which connects individuals with experienced mental health professionals </p>
+              <a href="#" class="btn btn-primary fw-bold" style="background:#1976d2; border:none;">Book a Session with Dr. Suri</a>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Doctor 4 Card -->
+        <div class="doctor-card p-4 mb-4">
+          <div class="row align-items-center">
+            <div class="col-md-3 text-center">
+              
+              <img src="https://placehold.co/150x150/FCE4EC/311B92?text=Mr.+Patel" class="rounded-circle doctor-img mb-3 mb-md-0" alt="Mr. Raj Patel">
+            </div>
+            <div class="col-md-9">
+              <h3 class="fw-bold mb-1" style="color: #46062e;">Dr. Harmanjeet Kaur</h3>
+              <p class="text-primary fw-bold">Psychiatry & Cognitive Behavioral Therapy</p>
+               <div class="mb-3">
+                <span class="badge bg-danger-subtle text-danger-emphasis rounded-pill p-2 specialty-badge"><i class="fa-solid fa-child me-1"></i>Teen & Young Adult Issues</span>
+                <span class="badge bg-warning-subtle text-warning-emphasis rounded-pill p-2 specialty-badge"><i class="fa-solid fa-graduation-cap me-1"></i>Academic & Social Pressures</span>
+              </div>
+              <p class="text-muted">Services: Treatment for depression, anxiety, OCD, PTSD, schizophrenia, insomnia, substance abuse, and more. Offers both in-person and online consultations. </p>
+              <a href="#" class="btn btn-primary fw-bold" style="background:#1976d2; border:none;">Book a Session with Mr. Kaur</a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="py-4 bg-dark text-light mt-5">
+  <div class="container text-center">
+    <small>&copy; 2025 HorizonCare | All rights reserved.</small>
+  </div>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
