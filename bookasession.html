@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Your Session</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+    <style>
+        /* --- Color Palette and Fonts --- */
+        :root {
+            --color-deep-purple: #311b92;
+            --color-action-blue: #1976d2;
+            --font-primary: 'Lato', sans-serif;
+            --font-secondary: 'Open Sans', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-secondary);
+            background: linear-gradient(135deg, #e0f7fa, #fce4ec);
+            min-height: 100vh;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: var(--font-primary);
+            font-weight: 700;
+            color: var(--color-deep-purple);
+        }
+
+        .btn-primary {
+            background-color: var(--color-action-blue);
+            border-color: var(--color-action-blue);
+        }
+
+        .btn-primary:hover {
+            background-color: #155a9e; /* A slightly darker shade for hover */
+            border-color: #155a9e;
+        }
+
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 0.5rem;
+        }
+
+        .support-info h3 {
+            color: var(--color-deep-purple);
+            font-size: 1.25rem;
+            margin-bottom: 1rem;
+        }
+        
+        .support-info .faq-question {
+            font-weight: 600;
+        }
+
+    </style>
+</head>
+<body>
+
+    <!-- 1. Navigation Bar (Consistent with other pages) -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white shadow-sm">
+        <div class="container">
+            <a class="navbar-brand" href="#" style="color: var(--color-deep-purple); font-family: var(--font-primary);">HorizonCare</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="#">Book Now</a>
+                    </li>
+                </ul> -->
+            </div>
+        </div>
+    </nav>
+
+    <!-- 2. Page Header -->
+    <header class="text-center py-5">
+        <div class="container">
+            <h1 class="display-5">Schedule Your Confidential Session</h1>
+            <p class="lead text-muted">Taking the first step is a sign of strength. Fill out the secure form below, and our team will contact you shortly to confirm your appointment.</p>
+        </div>
+    </header>
+
+    <!-- 3. Main Content Area -->
+    <main class="container pb-5">
+        <div class="row g-5">
+
+            <!-- Left Column: The Booking Form -->
+            <div class="col-lg-8">
+                <div class="form-container p-4 p-md-5 shadow-sm">
+                    <h2 class="mb-4">Book Your Session</h2>
+                    <p class="text-muted mb-4">Your journey towards mental wellness starts here. Our booking process is simple, secure, and completely confidential.</p>
+                    
+                    <form>
+                        <!-- Full Name -->
+                        <div class="mb-3">
+                            <label for="fullName" class="form-label">Full Name</label>
+                            <input type="text" class="form-control" id="fullName" required>
+                        </div>
+
+                        <!-- Email & Phone in a row -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="email" class="form-label">Email Address</label>
+                                <input type="email" class="form-control" id="email" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="phone" class="form-label">Phone Number</label>
+                                <input type="tel" class="form-control" id="phone">
+                            </div>
+                        </div>
+
+                        <!-- Service and Therapist Selection in a row -->
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="interest" class="form-label">I am interested in...</label>
+                                <select class="form-select" id="interest">
+                                    <option selected>Choose an option...</option>
+                                    <option value="individual">Individual Therapy</option>
+                                    <option value="couples">Couples Counseling</option>
+                                    <option value="family">Family Therapy</option>
+                                    <option value="unsure">Not Sure Yet</option>
+                                </select>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="therapist" class="form-label">Preferred Therapist (Optional)</label>
+                                <select class="form-select" id="therapist">
+                                    <option selected>Any Available Therapist</option>
+                                    <option value="sharma">Dr. Aanya Sharma</option>
+                                    <option value="sharma">Dr. Sumeet Inder Singh</option>
+                                    <option value="sharma">Dr. R.K. Suri </option>
+                                    <option value="sharma">Dr. Harmanjeet Kaur</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Preferred Method (Radio Buttons) -->
+                        <div class="mb-4">
+                            <label class="form-label d-block">Preferred Method</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="sessionMethod" id="online" value="online" checked>
+                                <label class="form-check-label" for="online">Online Session</label>
+                            </div>
+                            <!-- <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="sessionMethod" id="inperson" value="in-person">
+                                <label class="form-check-label" for="inperson">In-Person Session</label>
+                            </div> -->
+                        </div>
+
+                        <!-- Reason for Visit -->
+                        <div class="mb-4">
+                            <label for="reason" class="form-label">Please share a brief, non-detailed reason for your visit.</label>
+                            <textarea class="form-control" id="reason" rows="4" placeholder="This helps us match you with the right specialist."></textarea>
+                        </div>
+
+                        <!-- Confirmation Checkbox -->
+                        <div class="form-check mb-4">
+                            <!-- <input class="form-check-input" type="checkbox" value="" id="terms" required> -->
+                            <!-- <label class="form-check-label" for="terms"> -->
+                                <!-- I acknowledge and agree to the <a href="#">terms of service</a> and <a href="#">privacy policy</a>. -->
+                            </label>
+                        </div>
+
+                        <!-- Submit Button -->
+                        <div class="d-grid">
+                            <button type="submit" class="btn btn-primary btn-lg"><a href="doctorlist.html" target="_blank" style="color: #ffffff;">Request My Appointment</a></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Right Column: Support Information -->
+            <div class="col-lg-4">
+                <div class="support-info p-4" style="background-color: rgba(255,255,255,0.6); border-radius: 0.5rem;">
+                    <h3><i class="fa-solid fa-lock me-2"></i>Your Privacy is Our Priority</h3>
+                    <p class="text-muted">All information submitted through this form is encrypted and stored securely. Your confidentiality is paramount to us.</p>
+                    <hr class="my-4">
+                    
+                    <h3>Frequently Asked Questions</h3>
+                    <div class="mb-3">
+                        <p class="faq-question">What happens after I book?</p>
+                        <p class="text-muted">Our client coordinator will reach out to you via your preferred contact method within 24 hours to confirm your appointment details and answer any preliminary questions.</p>
+                    </div>
+                    <div class="mb-3">
+                        <p class="faq-question">Are sessions online or in-person?</p>
+                        <p class="text-muted">We offer both! You can select your preference in the form. Our therapists are equipped for secure video sessions and our offices are open for in-person appointments.</p>
+                    </div>
+                    <hr class="my-4">
+                    
+                    <h3>Need Help?</h3>
+                    <p class="text-muted">If you're having trouble with the form or have an urgent question, please don't hesitate to contact us directly.</p>
+                    <p class="text-muted"><strong>Email:</strong> support@mindwell.com<br><strong>Phone:</strong> (123) 456-7890</p>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
