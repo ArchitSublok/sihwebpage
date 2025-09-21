@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customizable Knowledge Chatbot</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chat-bubble-user {
+            background-color: #3b82f6; /* blue-500 */
+            color: white;
+            border-radius: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            align-self: flex-end;
+            max-width: 80%;
+        }
+        .chat-bubble-bot {
+            background-color: #e5e7eb; /* gray-200 */
+            color: #1f2937; /* gray-800 */
+            border-radius: 1.5rem;
+            padding: 0.75rem 1.25rem;
+            align-self: flex-start;
+            max-width: 80%;
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-top: 4px solid #3b82f6;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        /* Scrollbar styles */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #888;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #555;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 flex flex-col md:flex-row h-screen antialiased text-gray-800">
+
+    <!-- Control Panel -->
+    <div class="md:w-1/3 lg:w-1/4 bg-white p-6 shadow-lg overflow-y-auto">
+        <h1 class="text-2xl font-bold text-gray-900 mb-2">Custom Chatbot</h1>
+        <p class="text-sm text-gray-600 mb-6">Create buttons for frequently asked questions. The chatbot will search the internet for the most current answers.</p>
+
+        <div class="mb-6">
+            <label for="question-input" class="block text-md font-medium text-gray-700 mb-2">Question Buttons</label>
+            <p class="text-xs text-gray-500 mb-2">Enter one question per line. These will become clickable buttons in the chat panel.</p>
+            <textarea id="question-input" rows="8" class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="e.g., What are the latest AI trends?&#10;Summarize the top news headlines today.&#10;What is the weather in London?"></textarea>
+        </div>
+        <button id="save-questions" class="w-full bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition">
+            Save & Generate Buttons
+        </button>
+    </div>
+
+    <!-- Chat Panel -->
+    <div class="flex-1 p-4 sm:p-6 flex flex-col h-screen">
+        <!-- Chat Header -->
+        <div class="flex sm:items-center justify-between py-3 border-b-2 border-gray-200">
+            <div class="relative flex items-center space-x-4">
+                <div class="relative">
+                    <span class="absolute text-green-500 right-0 bottom-0">
+                        <svg width="20" height="20">
+                            <circle cx="8" cy="8" r="8" fill="currentColor"></circle>
+                        </svg>
+                    </span>
+                    <div class="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-blue-500 flex items-center justify-center text-white text-xl font-bold">B</div>
+                </div>
+                <div class="flex flex-col leading-tight">
+                    <div class="text-lg sm:text-xl font-medium">
+                        <span class="text-gray-700">Knowledge Bot</span>
+                    </div>
+                    <span class="text-sm text-gray-600">Online</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Messages -->
+        <div id="messages" class="flex-1 p-3 space-y-4 overflow-y-auto">
+            <!-- Initial Bot Message -->
+            <div class="chat-bubble-bot">
+                <span>Hello! How can I help you today? You can ask me anything or use one of the custom question buttons.</span>
+            </div>
+             <!-- Quick Action Buttons -->
+            <div id="quick-actions" class="py-2 flex flex-wrap gap-2">
+                <!-- Buttons will be generated here -->
+            </div>
+        </div>
+
+        <!-- Sources Display -->
+        <div id="sources-container" class="py-2 px-4 border-t border-gray-200 text-xs text-gray-500">
+            <!-- Sources will be displayed here -->
+        </div>
+
+        <!-- Message Input -->
+        <div class="border-t-2 border-gray-200 px-4 pt-4 mb-2 sm:mb-0">
+            <div class="relative flex">
+                <input id="chat-input" type="text" placeholder="Write your message!" class="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-4 bg-gray-200 rounded-full py-3">
+                <div class="absolute right-0 items-center inset-y-0 hidden sm:flex">
+                    <button id="send-button" type="button" class="inline-flex items-center justify-center rounded-full h-10 w-10 sm:h-12 sm:w-12 transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-600 focus:outline-none">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-6 w-6 transform rotate-90">
+                            <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const questionInput = document.getElementById('question-input');
+        const saveButton = document.getElementById('save-questions');
+        const quickActionsContainer = document.getElementById('quick-actions');
+        const messagesContainer = document.getElementById('messages');
+        const chatInput = document.getElementById('chat-input');
+        const sendButton = document.getElementById('send-button');
+        const sourcesContainer = document.getElementById('sources-container');
+
+        const API_KEY = ""; // This will be handled by the execution environment.
+
+        // --- Core Functions ---
+
+        /**
+         * Calls the Gemini API with the user's query and uses Google Search grounding.
+         * Implements exponential backoff for retries.
+         */
+        async function callGeminiAPI(query, retries = 5, delay = 1000) {
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${API_KEY}`;
+            const payload = {
+                contents: [{ parts: [{ text: query }] }],
+                tools: [{ "google_search": {} }], // Enable Google Search grounding
+            };
+
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload),
+                    });
+
+                    if (!response.ok) {
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    return await response.json();
+                } catch (error) {
+                    console.error(`Attempt ${i + 1} failed:`, error);
+                    if (i < retries - 1) {
+                        await new Promise(resolve => setTimeout(resolve, delay));
+                        delay *= 2; // Exponential backoff
+                    } else {
+                        return { error: "Failed to get a response from the AI model after several retries." };
+                    }
+                }
+            }
+        }
+
+        /**
+         * Handles the process of sending a query and displaying the response.
+         */
+        async function handleQuery(queryText) {
+            if (!queryText.trim()) return;
+
+            displayMessage(queryText, 'user');
+            chatInput.value = '';
+            setLoading(true);
+
+            const result = await callGeminiAPI(queryText);
+
+            setLoading(false);
+
+            if (result.error) {
+                displayMessage(result.error, 'bot');
+                return;
+            }
+            
+            const candidate = result.candidates?.[0];
+            if (candidate && candidate.content?.parts?.[0]?.text) {
+                const botResponse = candidate.content.parts[0].text;
+                displayMessage(botResponse, 'bot');
+
+                // Handle sources
+                let sources = [];
+                const groundingMetadata = candidate.groundingMetadata;
+                if (groundingMetadata && groundingMetadata.groundingAttributions) {
+                    sources = groundingMetadata.groundingAttributions
+                        .map(attr => ({ uri: attr.web?.uri, title: attr.web?.title }))
+                        .filter(source => source.uri && source.title);
+                }
+                displaySources(sources);
+
+            } else {
+                displayMessage("I'm sorry, I couldn't process that. The response was empty.", 'bot');
+                console.error("Invalid response structure:", result);
+            }
+        }
+        
+        // --- UI Helper Functions ---
+        
+        function setLoading(isLoading) {
+            const existingLoader = document.getElementById('loader-bubble');
+            if (isLoading) {
+                if (!existingLoader) {
+                    const loaderBubble = document.createElement('div');
+                    loaderBubble.id = 'loader-bubble';
+                    loaderBubble.className = 'chat-bubble-bot';
+                    loaderBubble.innerHTML = '<div class="loader"></div>';
+                    messagesContainer.appendChild(loaderBubble);
+                    scrollToBottom();
+                }
+                sendButton.disabled = true;
+                chatInput.disabled = true;
+            } else {
+                if (existingLoader) {
+                    existingLoader.remove();
+                }
+                sendButton.disabled = false;
+                chatInput.disabled = false;
+                chatInput.focus();
+            }
+        }
+
+        function displayMessage(text, sender) {
+            const bubble = document.createElement('div');
+            bubble.className = sender === 'user' ? 'chat-bubble-user' : 'chat-bubble-bot';
+            // Simple markdown for bold and lists
+            let formattedText = text.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
+            formattedText = formattedText.replace(/^\* (.*$)/gm, '<ul class="list-disc list-inside"><li>$1</li></ul>');
+            bubble.innerHTML = `<span>${formattedText}</span>`;
+
+            messagesContainer.insertBefore(bubble, quickActionsContainer);
+            scrollToBottom();
+        }
+        
+        function displaySources(sources) {
+            sourcesContainer.innerHTML = ''; // Clear previous sources
+            if (sources.length > 0) {
+                const title = document.createElement('p');
+                title.className = 'font-semibold mb-1';
+                title.textContent = 'Sources:';
+                sourcesContainer.appendChild(title);
+
+                const list = document.createElement('div');
+                list.className = 'flex flex-col space-y-1';
+                sources.forEach((source, index) => {
+                    const link = document.createElement('a');
+                    link.href = source.uri;
+                    link.textContent = `${index + 1}. ${source.title}`;
+                    link.target = '_blank';
+                    link.rel = 'noopener noreferrer';
+                    link.className = 'text-blue-600 hover:underline truncate';
+                    list.appendChild(link);
+                });
+                sourcesContainer.appendChild(list);
+            }
+        }
+
+        function generateButtons() {
+            const questions = questionInput.value.split('\n').filter(q => q.trim() !== '');
+            quickActionsContainer.innerHTML = ''; // Clear existing buttons
+            
+            if (questions.length === 0) return;
+
+            questions.forEach(q => {
+                const button = document.createElement('button');
+                button.textContent = q;
+                button.className = "bg-gray-200 text-gray-700 text-sm font-medium py-2 px-4 rounded-full hover:bg-gray-300 transition";
+                button.onclick = () => handleQuery(q);
+                quickActionsContainer.appendChild(button);
+            });
+
+            localStorage.setItem('customQuestions', questionInput.value);
+        }
+
+        function scrollToBottom() {
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+        }
+
+        // --- Event Listeners and Initialization ---
+
+        saveButton.addEventListener('click', generateButtons);
+
+        sendButton.addEventListener('click', () => handleQuery(chatInput.value));
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+                handleQuery(chatInput.value);
+            }
+        });
+
+        // Load saved questions on startup
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedQuestions = localStorage.getItem('customQuestions');
+            if (savedQuestions) {
+                questionInput.value = savedQuestions;
+                generateButtons();
+            }
+        });
+
+    </script>
+</body>
+</html>
+
