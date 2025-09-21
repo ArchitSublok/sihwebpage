@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Wellness Hub</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f8f9fa;
+            color: #333;
+        }
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('https://placehold.co/1920x400/000000/FFFFFF?text=Mental+Wellness') no-repeat center center;
+            background-size: cover;
+            color: white;
+            padding: 100px 0;
+            text-align: center;
+        }
+        .hero h2 { /* Changed from h1 to h2 to match original structure */
+            font-size: 3.5rem;
+            font-weight: 700;
+        }
+        .hero p {
+            font-size: 1.25rem;
+            font-weight: 300;
+        }
+        .topic-card {
+            background-color: #ffffff;
+            border: none;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+            margin-bottom: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .topic-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+        }
+        .topic-card .card-header {
+            background-color: #0d6efd;
+            color: white;
+            font-weight: 700;
+            font-size: 1.5rem;
+            border-top-left-radius: 15px;
+            border-top-right-radius: 15px;
+            padding: 20px;
+        }
+        .list-group-item {
+            border: none;
+            padding: 15px 20px;
+        }
+        .list-group-item h5 {
+            color: #0d6efd;
+            margin-bottom: 5px;
+            font-weight: 700;
+        }
+        .list-group-item p {
+            margin-bottom: 0;
+            color: #555;
+            line-height: 1.6;
+        }
+        .accordion-button:not(.collapsed) {
+            color: #fff;
+            background-color: #0d6efd;
+        }
+        .accordion-button:focus {
+            box-shadow: none;
+        }
+        .footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        h1 {
+            text-align: center;
+            color: #343a40; /* A dark gray that matches your footer for consistency */
+            font-weight: 700;
+            
+            font-size: 2.25rem; /* A balanced font size for a main heading */
+            text-transform: uppercase;
+            letter-spacing: 1.5px; /* Adds a touch of elegance */
+            padding-bottom: 1rem; /* Creates space between the text and the line */
+            margin-bottom: 3rem; /* Adds space above the content cards */
+            border-bottom: 2px solid #dee2e6; /* A light, subtle line for separation */
+            background-color: transparent; /* Removes the old lightcyan background */
+            background-color: #dee2e6;
+}
+    </style>
+</head>
+<body>
+
+    <header class="hero">
+        <div class="container">
+            <h2>Pathways to Mental Wellness</h2>
+            <p class="lead">Your guide to understanding solutions and support for mental health.</p>
+        </div>
+    </header>
+
+<h1>SOLUTIONS & SUPPORT FOR MENTAL WELL-BEING</h1>
+
+    <main class="container my-5">
+        <div class="row">
+            <div class="col-lg-4 col-md-6">
+                <div class="topic-card">
+                    <div class="card-header">Therapeutic Approaches</div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <h5>Psychotherapy (Talk Therapy)</h5>
+                            <p>Explore effective treatments like Cognitive Behavioral Therapy (CBT) and Dialectical Behavior Therapy (DBT) to manage thoughts and emotions.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>Medication Management</h5>
+                            <p>Learn about the role of psychiatric medications, such as antidepressants and anti-anxiety drugs, in treating mental health conditions.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>Holistic & Alternative Cures</h5>
+                            <p>Discover complementary therapies including art therapy, mindfulness, meditation, and yoga that support overall mental wellness.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="topic-card">
+                    <div class="card-header">Lifestyle and Self-Care</div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <h5>Nutrition and Mental Health</h5>
+                            <p>Understand the powerful link between diet and mood, and how balanced nutrition can improve your mental state and cognitive function.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>The Importance of Exercise</h5>
+                            <p>Learn how regular physical activity can reduce symptoms of depression and anxiety, boost mood, and improve sleep quality.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>Building a Support System</h5>
+                            <p>Discover the value of connecting with friends, family, and support groups to foster a sense of belonging and reduce feelings of isolation.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="topic-card">
+                    <div class="card-header">Modern Support Systems</div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <h5>Digital Mental Health Tools</h5>
+                            <p>Get an overview of mental health apps, online therapy platforms, and telehealth services that make support more accessible than ever.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>Crisis Intervention</h5>
+                            <p>Find information on vital resources like crisis hotlines and emergency mental health services for immediate support in difficult times.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>Peer and Community Support</h5>
+                            <p>Explore the role of peer support specialists and community-based programs in providing empathetic, lived-experience-based guidance.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+<h1>SOLUTIONS & SUPPORT FOR MENTAL WELL-BEING</h1>
+
+    <main class="container my-5">
+        <div class="row">
+             <div class="col-lg-4 col-md-6">
+                <div class="topic-card">
+                    <div class="card-header">Therapeutic Approaches</div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <h5>Psychotherapy (Talk Therapy)</h5>
+                            <p>Explore effective treatments like Cognitive Behavioral Therapy (CBT) and Dialectical Behavior Therapy (DBT) to manage thoughts and emotions.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>Medication Management</h5>
+                            <p>Learn about the role of psychiatric medications, such as antidepressants and anti-anxiety drugs, in treating mental health conditions.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>Holistic & Alternative Cures</h5>
+                            <p>Discover complementary therapies including art therapy, mindfulness, meditation, and yoga that support overall mental wellness.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="topic-card">
+                    <div class="card-header">Lifestyle and Self-Care</div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <h5>Nutrition and Mental Health</h5>
+                            <p>Understand the powerful link between diet and mood, and how balanced nutrition can improve your mental state and cognitive function.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>The Importance of Exercise</h5>
+                            <p>Learn how regular physical activity can reduce symptoms of depression and anxiety, boost mood, and improve sleep quality.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>Building a Support System</h5>
+                            <p>Discover the value of connecting with friends, family, and support groups to foster a sense of belonging and reduce feelings of isolation.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="topic-card">
+                    <div class="card-header">Modern Support Systems</div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <h5>Digital Mental Health Tools</h5>
+                            <p>Get an overview of mental health apps, online therapy platforms, and telehealth services that make support more accessible than ever.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>Crisis Intervention</h5>
+                            <p>Find information on vital resources like crisis hotlines and emergency mental health services for immediate support in difficult times.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>Peer and Community Support</h5>
+                            <p>Explore the role of peer support specialists and community-based programs in providing empathetic, lived-experience-based guidance.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+
+<h1>SOLUTIONS & SUPPORT FOR MENTAL WELL-BEING</h1>
+
+    <main class="container my-5">
+        <div class="row">
+             <div class="col-lg-4 col-md-6">
+                <div class="topic-card">
+                    <div class="card-header">Therapeutic Approaches</div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <h5>Psychotherapy (Talk Therapy)</h5>
+                            <p>Explore effective treatments like Cognitive Behavioral Therapy (CBT) and Dialectical Behavior Therapy (DBT) to manage thoughts and emotions.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>Medication Management</h5>
+                            <p>Learn about the role of psychiatric medications, such as antidepressants and anti-anxiety drugs, in treating mental health conditions.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>Holistic & Alternative Cures</h5>
+                            <p>Discover complementary therapies including art therapy, mindfulness, meditation, and yoga that support overall mental wellness.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="topic-card">
+                    <div class="card-header">Lifestyle and Self-Care</div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <h5>Nutrition and Mental Health</h5>
+                            <p>Understand the powerful link between diet and mood, and how balanced nutrition can improve your mental state and cognitive function.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>The Importance of Exercise</h5>
+                            <p>Learn how regular physical activity can reduce symptoms of depression and anxiety, boost mood, and improve sleep quality.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>Building a Support System</h5>
+                            <p>Discover the value of connecting with friends, family, and support groups to foster a sense of belonging and reduce feelings of isolation.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="topic-card">
+                    <div class="card-header">Modern Support Systems</div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <h5>Digital Mental Health Tools</h5>
+                            <p>Get an overview of mental health apps, online therapy platforms, and telehealth services that make support more accessible than ever.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>Crisis Intervention</h5>
+                            <p>Find information on vital resources like crisis hotlines and emergency mental health services for immediate support in difficult times.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <h5>Peer and Community Support</h5>
+                            <p>Explore the role of peer support specialists and community-based programs in providing empathetic, lived-experience-based guidance.</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer class="footer mt-auto">
+        <div class="container">
+            <span>&copy; 2024 Mental Wellness Hub. All Rights Reserved.</span>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
