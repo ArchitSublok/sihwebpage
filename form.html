@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mental Wellness Check-in</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(120deg, #fdfbfb 0%, #ebedee 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 2rem 0;
+        }
+
+        .quiz-container {
+            background-color: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem 3rem;
+            max-width: 800px;
+            width: 100%;
+            border: 1px solid #e0e0e0;
+            animation: fadeIn 1s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .quiz-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-header h2 {
+            font-weight: 600;
+            color: #333;
+        }
+
+        .quiz-header p {
+            color: #666;
+        }
+
+        .header-graphic {
+            width: 150px;
+            margin-bottom: 1rem;
+            opacity: 0.8;
+        }
+
+        .question-block {
+            margin-bottom: 2rem;
+            animation: slideInUp 0.8s ease-out forwards;
+            opacity: 0;
+        }
+
+        /* Staggered animation for questions */
+        .question-block:nth-child(1) { animation-delay: 0.2s; }
+        .question-block:nth-child(2) { animation-delay: 0.4s; }
+        .question-block:nth-child(3) { animation-delay: 0.6s; }
+        .question-block:nth-child(4) { animation-delay: 0.8s; }
+        .question-block:nth-child(5) { animation-delay: 1.0s; }
+        .question-block:nth-child(6) { animation-delay: 1.2s; }
+
+
+        @keyframes slideInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .question-text {
+            font-weight: 600;
+            color: #444;
+            margin-bottom: 1rem;
+        }
+
+        .form-check {
+            margin-bottom: 0.75rem;
+        }
+
+        .form-check-label {
+            display: block;
+            padding: 0.8rem 1.2rem;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .form-check-label:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
+            border-color: #a8dadc;
+        }
+
+        .form-check-input {
+            display: none;
+        }
+
+        .form-check-input:checked + .form-check-label {
+            background-color: #457b9d;
+            border-color: #457b9d;
+            color: #fff;
+            box-shadow: 0 4px 15px rgba(69, 123, 157, 0.3);
+        }
+
+        .motivational-message {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 1.5rem;
+            background-color: #f1faee;
+            border-radius: 15px;
+            color: #1d3557;
+            border: 1px solid #a8dadc;
+            animation: fadeIn 1s ease-in-out 1.5s forwards;
+            opacity: 0;
+        }
+        
+        .motivational-message p {
+            margin-bottom: 0;
+            font-style: italic;
+        }
+
+        .thank-you-btn {
+            background: #e63946;
+            color: #fff;
+            border: none;
+            padding: 0.8rem 2rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            margin: 1.5rem auto 0;
+        }
+
+        .thank-you-btn:hover {
+            background: #d00000;
+            transform: scale(1.05);
+            box-shadow: 0 5px 20px rgba(230, 57, 70, 0.4);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container my-5">
+        <div class="quiz-container">
+            <div class="quiz-header">
+                <!-- Graphic -->
+                <svg class="header-graphic" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#457b9d"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M16.5,8.25a.75.75,0,0,0-1.5,0V15a.75.75,0,0,0,1.5,0Z"></path><path d="M12,9.75a.75.75,0,0,0-.75.75v4.5a.75.75,0,0,0,1.5,0V10.5A.75.75,0,0,0,12,9.75Z"></path><path d="M9,11.25a.75.75,0,0,0-1.5,0v3a.75.75,0,0,0,1.5,0Z"></path><path d="M12,2A10,10,0,1,0,22,12,10,10,0,0,0,12,2Zm0,18.5A8.5,8.5,0,1,1,20.5,12,8.51,8.51,0,0,1,12,20.5Z"></path></g></svg>
+                <h2>Mental Wellness Check-in</h2>
+                <p>Take a moment to reflect on your feelings. Your well-being matters.</p>
+            </div>
+            
+            <form id="mentalHealthForm">
+                <!-- Question 1 -->
+                <div class="question-block">
+                    <p class="question-text">1. Over the last week, how often have you felt calm and peaceful?</p>
+                    <div class="form-check"><input type="radio" class="form-check-input" name="q1" id="q1a1"><label class="form-check-label" for="q1a1">All of the time</label></div>
+                    <div class="form-check"><input type="radio" class="form-check-input" name="q1" id="q1a2"><label class="form-check-label" for="q1a2">Most of the time</label></div>
+                    <div class="form-check"><input type="radio" class="form-check-input" name="q1" id="q1a3"><label class="form-check-label" for="q1a3">Some of the time</label></div>
+                    <div class="form-check"><input type="radio" class="form-check-input" name="q1" id="q1a4"><label class="form-check-label" for="q1a4">None of the time</label></div>
+                </div>
+
+                <!-- Question 2 -->
+                <div class="question-block">
+                    <p class="question-text">2. How well have you been able to manage stress in your daily life recently?</p>
+                    <div class="form-check"><input type="radio" class="form-check-input" name="q2" id="q2a1"><label class="form-check-label" for="q2a1">Very well</label></div>
+                    <div class="form-check"><input type="radio" class="form-check-input" name="q2" id="q2a2"><label class="form-check-label" for="q2a2">Fairly well</label></div>
+                    <div class="form-check"><input type="radio" class="form-check-input" name="q2" id="q2a3"><label class="form-check-label" for="q2a3">Not so well</label></div>
+                    <div class="form-check"><input type="radio" class="form-check-input" name="q2" id="q2a4"><label class="form-check-label" for="q2a4">Not at all</label></div>
+                </div>
+
+                <!-- Question 3 -->
+                <div class="question-block">
+                    <p class="question-text">3. How would you describe your energy levels lately?</p>
+                    <div class="form-check"><input type="radio" class="form-check-input" name="q3" id="q3a1"><label class="form-check-label" for="q3a1">High and consistent</label></div>
+                    <div class="form-check"><input type="radio" class="form-check-input" name="q3" id="q3a2"><label class="form-check-label" for="q3a2">Generally good</label></div>
+                    <div class="form-check"><input type="radio" class="form-check-input" name="q3" id="q3a3"><label class="form-check-label" for="q3a3">Often low or fluctuating</label></div>
+                    <div class="form-check"><input type="radio" class="form-check-input" name="q3" id="q3a4"><label class="form-check-label" for="q3a4">Consistently drained</label></div>
+                </div>
+
+                <!-- Question 4 -->
+                <div class="question-block">
+                    <p class="question-text">4. How connected have you felt to friends or family this past week?</p>
+                    <div class="form-check"><input type="radio" class="form-check-input" name="q4" id="q4a1"><label class="form-check-label" for="q4a1">Very connected</label></div>
+                    <div class="form-check"><input type="radio" class="form-check-input" name="q4" id="q4a2"><label class="form-check-label" for="q4a2">Somewhat connected</label></div>
+                    <div class="form-check"><input type="radio" class="form-check-input" name="q4" id="q4a3"><label class="form-check-label" for="q4a3">A little disconnected</label></div>
+                    <div class="form-check"><input type="radio" class="form-check-input" name="q4" id="q4a4"><label class="form-check-label" for="q4a4">Very isolated</label></div>
+                </div>
+
+                <!-- Question 5 -->
+                <div class="question-block">
+                    <p class="question-text">5. Have you been able to enjoy your usual hobbies and interests?</p>
+                    <div class="form-check"><input type="radio" class="form-check-input" name="q5" id="q5a1"><label class="form-check-label" for="q5a1">Yes, fully</label></div>
+                    <div class="form-check"><input type="radio" class="form-check-input" name="q5" id="q5a2"><label class="form-check-label" for="q5a2">For the most part</label></div>
+                    <div class="form-check"><input type="radio" class="form-check-input" name="q5" id="q5a3"><label class="form-check-label" for="q5a3">Only a little</label></div>
+                    <div class="form-check"><input type="radio" class="form-check-input" name="q5" id="q5a4"><label class="form-check-label" for="q5a4">Not at all</label></div>
+                </div>
+                
+                <!-- Question 6 -->
+                <div class="question-block">
+                    <p class="question-text">6. How has your sleep quality been recently?</p>
+                    <div class="form-check"><input type="radio" class="form-check-input" name="q6" id="q6a1"><label class="form-check-label" for="q6a1">Excellent, very restful</label></div>
+                    <div class="form-check"><input type="radio" class="form-check-input" name="q6" id="q6a2"><label class="form-check-label" for="q6a2">Generally good</label></div>
+                    <div class="form-check"><input type="radio" class="form-check-input" name="q6" id="q6a3"><label class="form-check-label" for="q6a3">Poor and interrupted</label></div>
+                    <div class="form-check"><input type="radio" class="form-check-input" name="q6" id="q6a4"><label class="form-check-label" for="q6a4">Very poor, not restful</label></div>
+                </div>
+
+                <!-- Motivational Message -->
+                <div class="motivational-message">
+                    <p>"You are not your illness. You have an individual story to tell. You have a name, a history, a personality. Staying yourself is part of the battle."</p>
+                </div>
+
+                <button type="button" class="thank-you-btn"><a href="index.html" style="color: white;">Thank You!</a></button>
+            </form>
+        </div>
+    </div>
+    
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
