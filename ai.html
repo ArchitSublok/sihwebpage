@@ -3,360 +3,424 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Customizable Knowledge Chatbot</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>AI Web Chatbot</title>
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    
+    <!-- Google Fonts - Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
+        /* Custom Styles for a Professional Look */
         body {
-            font-family: 'Inter', sans-serif;
+            font-family: 'Poppins', sans-serif;
+            background-color: #f0f2f5;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
         }
-        .chat-bubble-user {
-            background-color: #3b82f6; /* blue-500 */
+
+        .chatbot-container {
+            width: 100%;
+            max-width: 800px;
+            height: 90vh;
+            max-height: 800px;
+            display: flex;
+            flex-direction: column;
+            background-color: #ffffff;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            border: 1px solid #e0e0e0;
+        }
+
+        .chatbot-header {
+            background: linear-gradient(135deg, #007bff, #0056b3);
             color: white;
-            border-radius: 1.5rem;
-            padding: 0.75rem 1.25rem;
-            align-self: flex-end;
-            max-width: 80%;
+            padding: 20px;
+            text-align: center;
+            border-bottom: 1px solid transparent;
         }
-        .chat-bubble-bot {
-            background-color: #e5e7eb; /* gray-200 */
-            color: #1f2937; /* gray-800 */
-            border-radius: 1.5rem;
-            padding: 0.75rem 1.25rem;
-            align-self: flex-start;
-            max-width: 80%;
+        
+        .chatbot-header h5 {
+            margin: 0;
+            font-weight: 600;
         }
-        .loader {
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #3b82f6;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            animation: spin 1s linear infinite;
+
+        .chatbot-header p {
+            margin: 0;
+            font-size: 0.85rem;
+            opacity: 0.9;
         }
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+
+        .chat-window {
+            flex-grow: 1;
+            padding: 20px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
         }
-        /* Scrollbar styles */
-        ::-webkit-scrollbar {
+
+        /* Custom scrollbar for a cleaner look */
+        .chat-window::-webkit-scrollbar {
             width: 8px;
         }
-        ::-webkit-scrollbar-track {
+
+        .chat-window::-webkit-scrollbar-track {
             background: #f1f1f1;
         }
-        ::-webkit-scrollbar-thumb {
+
+        .chat-window::-webkit-scrollbar-thumb {
             background: #888;
             border-radius: 4px;
         }
-        ::-webkit-scrollbar-thumb:hover {
+
+        .chat-window::-webkit-scrollbar-thumb:hover {
             background: #555;
+        }
+
+        .chat-message {
+            padding: 12px 18px;
+            border-radius: 20px;
+            max-width: 75%;
+            word-wrap: break-word;
+            line-height: 1.5;
+        }
+
+        .user-message {
+            background-color: #007bff;
+            color: white;
+            align-self: flex-end;
+            border-bottom-right-radius: 5px;
+        }
+
+        .bot-message {
+            background-color: #e9ecef;
+            color: #333;
+            align-self: flex-start;
+            border-bottom-left-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .bot-message .avatar {
+            width: 30px;
+            height: 30px;
+            flex-shrink: 0;
+        }
+        
+        .bot-message .avatar svg {
+            width: 100%;
+            height: 100%;
+        }
+
+
+        .input-area {
+            display: flex;
+            padding: 20px;
+            border-top: 1px solid #e0e0e0;
+            background-color: #f8f9fa;
+        }
+
+        .input-area input {
+            flex-grow: 1;
+            border: 1px solid #ced4da;
+            border-radius: 25px;
+            padding: 10px 20px;
+            font-size: 1rem;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+
+        .input-area input:focus {
+            border-color: #80bdff;
+            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+            outline: none;
+        }
+
+        .input-area button {
+            margin-left: 10px;
+            border: none;
+            background-color: #007bff;
+            color: white;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .input-area button:hover {
+            background-color: #0056b3;
+        }
+        
+        .input-area button:disabled {
+            background-color: #a0c7ff;
+            cursor: not-allowed;
+        }
+        
+        /* Typing indicator for the bot */
+        .typing-indicator {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .typing-indicator span {
+            height: 8px;
+            width: 8px;
+            margin: 0 2px;
+            background-color: #888;
+            border-radius: 50%;
+            display: inline-block;
+            animation: bounce 1.4s infinite ease-in-out both;
+        }
+        .typing-indicator span:nth-of-type(1) { animation-delay: -0.32s; }
+        .typing-indicator span:nth-of-type(2) { animation-delay: -0.16s; }
+
+        @keyframes bounce {
+            0%, 80%, 100% { transform: scale(0); }
+            40% { transform: scale(1.0); }
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .chatbot-container {
+                height: 100vh;
+                max-height: none;
+                border-radius: 0;
+                border: none;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-100 h-screen antialiased text-gray-800 overflow-hidden">
+<body>
 
-    <div class="relative flex h-full">
-        <div id="control-panel" class="absolute top-0 left-0 h-full w-4/5 max-w-sm bg-white p-6 shadow-lg overflow-y-auto transform -translate-x-full transition-transform duration-300 ease-in-out z-30 md:relative md:w-1/3 md:translate-x-0 md:shadow-lg lg:w-1/4">
-            <div class="flex justify-between items-center mb-6 md:hidden">
-                <h1 class="text-2xl font-bold text-gray-900">Settings</h1>
-                <button id="close-menu-button" class="p-2 -mr-2">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                </button>
-            </div>
-            <h1 class="hidden md:block text-2xl font-bold text-gray-900 mb-2">Custom Chatbot</h1>
-            <p class="text-sm text-gray-600 mb-6">Create buttons for frequently asked questions. The chatbot will search the internet for the most current answers.</p>
-
-            <div class="mb-6">
-                <label for="question-input" class="block text-md font-medium text-gray-700 mb-2">Question Buttons</label>
-                <p class="text-xs text-gray-500 mb-2">Enter one question per line. These will become clickable buttons in the chat panel.</p>
-                <textarea id="question-input" rows="8" class="w-full p-3 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition" placeholder="e.g., What are the latest AI trends?&#10;Summarize the top news headlines today.&#10;What is the weather in London?"></textarea>
-            </div>
-            <button id="save-questions" class="w-full bg-blue-600 text-white font-semibold py-3 px-4 rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition">
-                Save & Generate Buttons
-            </button>
+    <div class="chatbot-container">
+        <!-- Chatbot Header -->
+        <div class="chatbot-header">
+            <h5>AI Assistant</h5>
+            <p>Connected to the web for up-to-date answers</p>
         </div>
 
-        <div id="menu-overlay" class="fixed inset-0 bg-black bg-opacity-50 z-20 hidden md:hidden"></div>
-        <div class="flex-1 flex flex-col h-full">
-            <div class="flex sm:items-center justify-between py-3 border-b-2 border-gray-200 px-4">
-                <div class="relative flex items-center space-x-4">
-                    <div class="relative">
-                        <span class="absolute text-green-500 right-0 bottom-0">
-                            <svg width="20" height="20">
-                                <circle cx="8" cy="8" r="8" fill="currentColor"></circle>
-                            </svg>
-                        </span>
-                        <div class="w-10 sm:w-12 h-10 sm:h-12 rounded-full bg-blue-500 flex items-center justify-center text-white text-xl font-bold">B</div>
-                    </div>
-                    <div class="flex flex-col leading-tight">
-                        <div class="text-lg sm:text-xl font-medium">
-                            <span class="text-gray-700">Knowledge Bot</span>
-                        </div>
-                        <span class="text-sm text-gray-600">Online</span>
-                    </div>
+        <!-- Messages Display -->
+        <div class="chat-window" id="chat-window">
+            <div class="bot-message">
+                <div class="avatar">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-12h2v2h-2zm4 4h-2v-2h2v2zm-6 2h2v-2h-2v2zM9 12h2v2H9v-2zm-2-2h2v2H7v-2z"></path></svg>
                 </div>
-                <div class="flex items-center space-x-2 md:hidden">
-                    <button id="open-menu-button" type="button" class="inline-flex items-center justify-center rounded-lg border h-10 w-10 transition duration-500 ease-in-out text-gray-500 hover:bg-gray-300 focus:outline-none">
-                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.096 2.572-1.065z" />
-                           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-                        </svg>
-                    </button>
-                </div>
-                 </div>
-
-            <div id="messages" class="flex-1 p-3 space-y-4 overflow-y-auto pb-20">
-                <div class="chat-bubble-bot">
-                    <span>Hello! How can I help you today? You can ask me anything or use one of the custom question buttons.</span>
-                </div>
-                 <div id="quick-actions" class="py-2 flex flex-wrap gap-2">
-                    </div>
+                <span>Hello! How can I help you today? Ask me anything.</span>
             </div>
+        </div>
 
-            <div class="mt-auto bg-white">
-                <div id="sources-container" class="py-2 px-4 border-t border-gray-200 text-xs text-gray-500">
-                    </div>
-
-                <div class="border-t-2 border-gray-200 px-4 pt-4 mb-2 sm:mb-0">
-                    <div class="relative flex">
-                        <input id="chat-input" type="text" placeholder="Write your message!" class="w-full focus:outline-none focus:placeholder-gray-400 text-gray-600 placeholder-gray-600 pl-4 bg-gray-200 rounded-full py-3">
-                        <div class="absolute right-0 items-center inset-y-0 flex">
-                            <button id="send-button" type="button" class="inline-flex items-center justify-center rounded-full h-10 w-10 sm:h-12 sm:w-12 transition duration-500 ease-in-out text-white bg-blue-500 hover:bg-blue-600 focus:outline-none">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="h-6 w-6 transform rotate-90">
-                                    <path d="M10.894 2.553a1 1 0 00-1.788 0l-7 14a1 1 0 001.169 1.409l5-1.429A1 1 0 009 15.571V11a1 1 0 112 0v4.571a1 1 0 00.725.962l5 1.428a1 1 0 001.17-1.408l-7-14z"></path>
-                                </svg>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <!-- User Input Area -->
+        <div class="input-area">
+            <input type="text" id="user-input" class="form-control" placeholder="Type your message...">
+            <button id="send-button" aria-label="Send Message">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-send"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
+            </button>
         </div>
     </div>
 
-
     <script>
-        const questionInput = document.getElementById('question-input');
-        const saveButton = document.getElementById('save-questions');
-        const quickActionsContainer = document.getElementById('quick-actions');
-        const messagesContainer = document.getElementById('messages');
-        const chatInput = document.getElementById('chat-input');
+        const chatWindow = document.getElementById('chat-window');
+        const userInput = document.getElementById('user-input');
         const sendButton = document.getElementById('send-button');
-        const sourcesContainer = document.getElementById('sources-container');
-
-        // --- START: New elements for mobile drawer ---
-        const controlPanel = document.getElementById('control-panel');
-        const openMenuButton = document.getElementById('open-menu-button');
-        const closeMenuButton = document.getElementById('close-menu-button');
-        const menuOverlay = document.getElementById('menu-overlay');
-        // --- END: New elements ---
-
-        const API_KEY = ""; // This will be handled by the execution environment.
+        
+        const MODEL_NAME = "gemini-2.5-flash-preview-05-20";
+        // NOTE: The API key is not required when using the built-in proxy.
+        const API_KEY = "AIzaSyCOYEPNH7zD--EmOeZ2DAzYXtBlrgMpZ0g";
+        const API_URL = `https://generativelanguage.googleapis.com/v1beta/models/${MODEL_NAME}:generateContent?key=${API_KEY}`;
+        
+        let conversationHistory = [];
 
         // --- Core Functions ---
 
-        async function callGeminiAPI(query, retries = 5, delay = 1000) {
-            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash-latest:generateContent?key=${API_KEY}`;
-            const payload = {
-                contents: [{ parts: [{ text: query }] }],
-                tools: [{ "googleSearch": {} }], // Correct tool name is googleSearch
-            };
+        /**
+         * Sends a message to the Gemini API with web grounding.
+         * @param {string} prompt The user's message.
+         * @returns {Promise<string>} The AI's response.
+         */
+        async function getAiResponse(prompt) {
+            // Add user message to history for context
+            conversationHistory.push({ role: "user", parts: [{ text: prompt }] });
 
-            for (let i = 0; i < retries; i++) {
-                try {
-                    const response = await fetch(apiUrl, {
-                        method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
-                        body: JSON.stringify(payload),
-                    });
-                    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-                    return await response.json();
-                } catch (error) {
-                    console.error(`Attempt ${i + 1} failed:`, error);
-                    if (i < retries - 1) {
-                        await new Promise(resolve => setTimeout(resolve, delay));
-                        delay *= 2;
-                    } else {
-                        return { error: "Failed to get a response from the AI model after several retries." };
-                    }
+            try {
+                // Construct the payload for the API call
+                const payload = {
+                    // Use the last few messages for context
+                    contents: conversationHistory.slice(-10), 
+                    tools: [{
+                        "google_search": {} // Enables web search
+                    }],
+                };
+
+                const response = await fetch(API_URL, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(payload)
+                });
+
+                if (!response.ok) {
+                    const errorBody = await response.json();
+                    console.error("API Error Response:", errorBody);
+                    return `Error: ${errorBody.error.message || 'Failed to get response from the AI.'}`;
                 }
+
+                const data = await response.json();
+                
+                const candidate = data.candidates?.[0];
+                if (!candidate || !candidate.content?.parts?.[0]?.text) {
+                    console.error("Invalid response structure:", data);
+                    return "Sorry, I received an unexpected response. Please try again.";
+                }
+
+                const aiText = candidate.content.parts[0].text;
+
+                // Add AI response to history
+                conversationHistory.push({ role: "model", parts: [{ text: aiText }] });
+                
+                // Trim history to keep it from growing too large
+                if (conversationHistory.length > 20) {
+                    conversationHistory = conversationHistory.slice(-20);
+                }
+
+                return aiText;
+
+            } catch (error) {
+                console.error('Error fetching AI response:', error);
+                // Remove the last user message from history if the API call fails
+                conversationHistory.pop();
+                return "Sorry, I couldn't connect to the AI. Please check your connection and try again.";
             }
         }
-        
-        async function handleQuery(queryText) {
-            if (!queryText.trim()) return;
 
-            displayMessage(queryText, 'user');
-            chatInput.value = '';
-            setLoading(true);
 
-            // Hide menu on mobile when a query is sent
-            if(window.innerWidth < 768) closeMenu();
+        /**
+         * Handles the user sending a message.
+         */
+        async function handleSendMessage() {
+            const messageText = userInput.value.trim();
+            if (!messageText) return;
 
-            const result = await callGeminiAPI(queryText);
-            setLoading(false);
+            // Display user's message
+            addMessage('user', messageText);
+            userInput.value = '';
+            toggleInput(false);
 
-            if (result.error) {
-                displayMessage(result.error, 'bot');
-                return;
-            }
+            // Display typing indicator and get AI response
+            const typingIndicatorId = addTypingIndicator();
+            const aiResponse = await getAiResponse(messageText);
             
-            const candidate = result.candidates?.[0];
-            const toolCall = candidate?.content?.parts?.[0]?.toolCall;
-
-            if (toolCall?.name === 'googleSearch' && toolCall?.args?.results) {
-                 const searchResults = toolCall.args.results;
-                 const botResponse = searchResults.map(res => res.snippet).join('\n\n');
-                 displayMessage(botResponse || "I found some information, but no direct snippets. Please check the sources.", 'bot');
-                 
-                 const sources = searchResults.map(res => ({ uri: res.link, title: res.title })).filter(s => s.uri && s.title);
-                 displaySources(sources);
-
-            } else if (candidate?.content?.parts?.[0]?.text) {
-                const botResponse = candidate.content.parts[0].text;
-                displayMessage(botResponse, 'bot');
-                // Clear sources if it's a direct text response without search
-                displaySources([]);
-            } else {
-                displayMessage("I'm sorry, I couldn't process that. The response was empty.", 'bot');
-                console.error("Invalid response structure:", result);
-            }
+            // Remove typing indicator and display bot's message
+            removeTypingIndicator(typingIndicatorId);
+            addMessage('bot', aiResponse);
+            toggleInput(true);
         }
-        
+
         // --- UI Helper Functions ---
         
-        function setLoading(isLoading) {
-            const existingLoader = document.getElementById('loader-bubble');
-            if (isLoading) {
-                if (!existingLoader) {
-                    const loaderBubble = document.createElement('div');
-                    loaderBubble.id = 'loader-bubble';
-                    loaderBubble.className = 'chat-bubble-bot';
-                    loaderBubble.innerHTML = '<div class="loader"></div>';
-                    messagesContainer.appendChild(loaderBubble);
-                    scrollToBottom();
-                }
-                sendButton.disabled = true;
-                chatInput.disabled = true;
+        /**
+         * Adds a message to the chat window.
+         * @param {'user' | 'bot'} sender The sender of the message.
+         * @param {string} text The message content.
+         */
+        function addMessage(sender, text) {
+            const messageElement = document.createElement('div');
+            messageElement.classList.add('chat-message', sender === 'user' ? 'user-message' : 'bot-message');
+
+            if (sender === 'bot') {
+                 messageElement.innerHTML = `
+                    <div class="avatar">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-12h2v2h-2zm4 4h-2v-2h2v2zm-6 2h2v-2h-2v2zM9 12h2v2H9v-2zm-2-2h2v2H7v-2z"></path></svg>
+                    </div>
+                    <span></span>`;
+                // Sanitize and set text content to prevent XSS
+                messageElement.querySelector('span').textContent = text;
+
             } else {
-                if (existingLoader) existingLoader.remove();
-                sendButton.disabled = false;
-                chatInput.disabled = false;
-                chatInput.focus();
+                // For user, just set the text content directly
+                messageElement.textContent = text;
             }
-        }
-
-        function displayMessage(text, sender) {
-            const bubble = document.createElement('div');
-            bubble.className = sender === 'user' ? 'chat-bubble-user' : 'chat-bubble-bot';
-            let formattedText = text
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
-                
-            formattedText = formattedText.replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>');
-            formattedText = formattedText.replace(/^\* (.*$)/gm, '<ul class="list-disc list-inside"><li>$1</li></ul>');
-            bubble.innerHTML = `<span>${formattedText}</span>`;
-
-            // Insert before the quick actions container
-            const referenceNode = document.getElementById('quick-actions');
-            messagesContainer.insertBefore(bubble, referenceNode);
-
+            
+            chatWindow.appendChild(messageElement);
             scrollToBottom();
         }
+
+        /**
+         * Adds a typing indicator to the chat.
+         * @returns {string} The unique ID of the indicator element.
+         */
+        function addTypingIndicator() {
+            const uniqueId = `typing-${Date.now()}`;
+            const indicatorElement = document.createElement('div');
+            indicatorElement.classList.add('chat-message', 'bot-message');
+            indicatorElement.id = uniqueId;
+            indicatorElement.innerHTML = `
+                <div class="avatar">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zm-1-12h2v2h-2zm4 4h-2v-2h2v2zm-6 2h2v-2h-2v2zM9 12h2v2H9v-2zm-2-2h2v2H7v-2z"></path></svg>
+                </div>
+                <div class="typing-indicator">
+                    <span></span><span></span><span></span>
+                </div>`;
+            chatWindow.appendChild(indicatorElement);
+            scrollToBottom();
+            return uniqueId;
+        }
+
+        /**
+         * Removes the typing indicator from the chat.
+         * @param {string} elementId The ID of the indicator element to remove.
+         */
+        function removeTypingIndicator(elementId) {
+            const indicator = document.getElementById(elementId);
+            if (indicator) {
+                indicator.remove();
+            }
+        }
         
-        function displaySources(sources) {
-            sourcesContainer.innerHTML = '';
-            if (sources && sources.length > 0) {
-                const title = document.createElement('p');
-                title.className = 'font-semibold mb-1';
-                title.textContent = 'Sources:';
-                sourcesContainer.appendChild(title);
-
-                const list = document.createElement('div');
-                list.className = 'flex flex-col space-y-1';
-                sources.forEach((source, index) => {
-                    const link = document.createElement('a');
-                    link.href = source.uri;
-                    link.textContent = `${index + 1}. ${source.title}`;
-                    link.target = '_blank';
-                    link.rel = 'noopener noreferrer';
-                    link.className = 'text-blue-600 hover:underline truncate';
-                    list.appendChild(link);
-                });
-                sourcesContainer.appendChild(list);
+        /**
+         * Toggles the input field and send button's disabled state.
+         * @param {boolean} enabled - Whether to enable or disable the input.
+         */
+        function toggleInput(enabled) {
+            userInput.disabled = !enabled;
+            sendButton.disabled = !enabled;
+            if (enabled) {
+                userInput.focus();
             }
         }
 
-        function generateButtons() {
-            const questions = questionInput.value.split('\n').filter(q => q.trim() !== '');
-            quickActionsContainer.innerHTML = ''; 
-            
-            if (questions.length === 0) return;
 
-            questions.forEach(q => {
-                const button = document.createElement('button');
-                button.textContent = q;
-                button.className = "bg-gray-200 text-gray-700 text-sm font-medium py-2 px-4 rounded-full hover:bg-gray-300 transition";
-                button.onclick = () => handleQuery(q);
-                quickActionsContainer.appendChild(button);
-            });
-
-            localStorage.setItem('customQuestions', questionInput.value);
-            
-            // Auto-close menu on mobile after saving
-            if (window.innerWidth < 768) {
-                closeMenu();
-            }
-        }
-
+        /**
+         * Scrolls the chat window to the very bottom.
+         */
         function scrollToBottom() {
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            chatWindow.scrollTop = chatWindow.scrollHeight;
         }
 
-        // --- START: New functions for mobile drawer ---
-        function openMenu() {
-            controlPanel.classList.remove('-translate-x-full');
-            menuOverlay.classList.remove('hidden');
-            document.body.classList.add('overflow-hidden');
-        }
-
-        function closeMenu() {
-            controlPanel.classList.add('-translate-x-full');
-            menuOverlay.classList.add('hidden');
-            document.body.classList.remove('overflow-hidden');
-        }
-        // --- END: New functions ---
-
-
-        // --- Event Listeners and Initialization ---
-
-        saveButton.addEventListener('click', generateButtons);
-        sendButton.addEventListener('click', () => handleQuery(chatInput.value));
-        chatInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-                handleQuery(chatInput.value);
+        // --- Event Listeners ---
+        sendButton.addEventListener('click', handleSendMessage);
+        userInput.addEventListener('keydown', (event) => {
+            if (event.key === 'Enter') {
+                handleSendMessage();
             }
         });
 
-        // --- START: New event listeners for mobile drawer ---
-        openMenuButton.addEventListener('click', openMenu);
-        closeMenuButton.addEventListener('click', closeMenu);
-        menuOverlay.addEventListener('click', closeMenu);
-        // --- END: New event listeners ---
-
-        document.addEventListener('DOMContentLoaded', () => {
-            const savedQuestions = localStorage.getItem('customQuestions');
-            if (savedQuestions) {
-                questionInput.value = savedQuestions;
-                generateButtons();
-            }
-        });
+        // Focus the input field on load
+        window.onload = () => {
+            userInput.focus();
+        };
 
     </script>
 </body>
